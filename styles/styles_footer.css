@@ -1,5 +1,6 @@
 footer {
- background-image: linear-gradient(to bottom, #51a8ff, #1B1C1D00);
+
+ background-image: linear-gradient(to bottom, var(--color-contenido), var(--color-fondoFade));
 }
 footer div{
     width: 100vw;
@@ -19,6 +20,8 @@ footer div{
 
 .sitemap ul {
     list-style: none;
+    color: var(--color-footer);
+    text-shadow: 2px 2px 0px var(--color-fondo);
 }
 
 .socialmedia{
@@ -33,4 +36,9 @@ footer div{
     flex-wrap: wrap;
     align-content: flex-end;
     justify-content: space-around;
+}
+
+.socialmedia a {
+    text-decoration: none;
+    color: var(--color-footer);
 }
