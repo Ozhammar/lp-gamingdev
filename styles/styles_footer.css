@@ -20,6 +20,11 @@ footer div{
 
 .sitemap ul {
     list-style: none;
+
+}
+
+.sitemap ul li a {
+    text-decoration: none;
     color: var(--color-footer);
     text-shadow: 2px 2px 0px var(--color-fondo);
 }
