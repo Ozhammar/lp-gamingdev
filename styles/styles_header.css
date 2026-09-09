@@ -1,6 +1,6 @@
 
 .banner {
-    width: 100vw;
+    /* width: 100vw; */
     height: 30vh;
 }
 
@@ -12,7 +12,7 @@ object-position: bottom;
 }
 
 .navBar  {
-    width: 100vw;
+    /* width: 100vw; */
     height: 40%;
     padding: 0;
     margin: 0;
