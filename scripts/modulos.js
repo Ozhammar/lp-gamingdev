@@ -1,5 +1,6 @@
 document.addEventListener("click", (e) => {
   if (e.target.matches(".btnMenu")) {
+    e.preventDefault();
     const modulo = e.target.dataset.modulo;
     cargaModular(modulo);
   }
