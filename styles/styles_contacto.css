@@ -1,0 +1,51 @@
+#main_contacto {
+  display: flex;
+  justify-content: center;
+}
+
+.contactForm {
+  width: 50%;
+  margin: 10% 0% 10% 0%;
+  padding: 0 2% 2% 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: color-mix(in srgb, var(--color-contenido) 50%, transparent);
+  border: 1px solid var(--color-acent);
+  border-radius: 20px;
+  backdrop-filter: blur(56px);
+}
+
+.contactForm form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+}
+
+.contactForm label {
+  font-size: 1rem;
+}
+
+.contactForm input {
+  width: 100%;
+  display: block;
+  padding: 3%;
+  border-radius: 10px;
+  border: 1px solid var(--color-fondo);
+  font-family: var(--font-fuente);
+}
+
+.contactForm button{
+    width: 50%;
+    min-height: 2rem;
+    align-self: center;
+    font-weight: bold;
+    font-family: var(--font-fuente);
+     background-color: color-mix(in srgb, var(--color-acent) 50%, transparent);
+  border: 1px solid var(--color-acent);
+  border-radius: 10px;
+  backdrop-filter: blur(56px);
+}
