@@ -1,0 +1,15 @@
+main figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main figure img {
+    height: 370px;
+}
+
+main figure figcaption {
+    color: var(--color-footer);
+    font-size: 2em;
+}
