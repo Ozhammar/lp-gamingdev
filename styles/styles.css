@@ -1,4 +1,5 @@
 :root{
+    --font-fuente: 'Aldrich','Share Tech','Quantico', sans-serif;
     --color-fondo: #1B1C1D;
     --color-fondoFade: #1B1C1D00;
     --color-contenido: #51a8ff;
@@ -9,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--color-fondo);
-    font-family:'Aldrich','Share Tech','Quantico', sans-serif;
+    font-family: var(--font-fuente);
 }
 
 
