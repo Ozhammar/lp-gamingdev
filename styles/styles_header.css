@@ -48,12 +48,12 @@ object-position: bottom;
     background-color: transparent;
     border: 0;
     font-size: 20px;
-    color: var(--color-footer);
+    color: var(--color-acent);
     text-shadow: 2px 2px 0px var(--color-fondo);
     font-family: var(--font-fuente);
 }
 
 .navBar nav ul li button:hover{
     color: var(--color-fondo);
-    text-shadow: 0px 0px 10px var(--color-footer);
+    text-shadow: 0px 0px 10px var(--color-acent);
 }
