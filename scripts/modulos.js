@@ -1,5 +1,6 @@
 document.addEventListener("click", (e) => {
   if (e.target.matches(".btnMenu")) {
+    e.preventDefault();
     const modulo = e.target.dataset.modulo;
     cargaModular(modulo);
   }
@@ -19,6 +20,8 @@ async function cargaLayout() {
   }
 }
 
+/*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
+*/
 async function cargaModular(elemento = "home.html") {
   const main = document.getElementById("main");
 

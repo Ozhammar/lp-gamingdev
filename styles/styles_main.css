@@ -10,6 +10,6 @@ main figure img {
 }
 
 main figure figcaption {
-    color: var(--color-footer);
+    color: var(--color-acent);
     font-size: 2em;
 }
