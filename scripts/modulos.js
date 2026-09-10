@@ -20,7 +20,9 @@ async function cargaLayout() {
   }
 }
 
-async function cargaModular(elemento = "home.html") {
+/*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
+*/
+async function cargaModular(elemento = "about.html") {
   const main = document.getElementById("main");
 
   try {

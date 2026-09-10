@@ -1,0 +1,51 @@
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#main_about {
+  color: var(--color-acent);
+  width: 80%;
+  
+}
+
+#main_about section {
+  display: flex;
+  flex-direction: row;
+  
+  gap: 2rem;
+}
+
+section > aside{
+    padding: 1%;
+    width: 80%;
+}
+
+section div {
+    padding: 1%;
+}
+
+.contenedorBIO{
+    display: flex;
+        align-items: center;
+    gap: 5%;
+}
+
+.contenedorBIO > aside {
+padding: 2%;
+text-align: justify;
+}
+
+.contenedorBIO > figure {
+padding: 2%;
+}
+
+.contenedorBIO > figure >img {
+    border-radius: 30%;
+    border: 2px solid var(--color-fondo);
+    box-shadow: 0px 0px 8px var(--color-acent);
+    max-height: 250px;
+    margin-bottom: 5%;
+   
+}
+
