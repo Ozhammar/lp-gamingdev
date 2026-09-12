@@ -1,17 +1,22 @@
 #main_contacto {
   display: flex;
   justify-content: center;
-  width: 50%;
+  align-items: center;
+  width: 70%;
+  gap: 5%;
+  margin: 2% 0% 2% 0%;
+  padding: 0 2% 2% 2%;
+}
+
+#main_contacto aside {
+  color: var(--color-acent);
 }
 
 .contactForm {
-  width: 50%;
-  margin: 10% 0% 10% 0%;
-  padding: 0 2% 2% 2%;
   display: flex;
   align-items: center;
   flex-direction: column;
-
+  padding-bottom: 2%;
   background-color: color-mix(in srgb, var(--color-contenido) 50%, transparent);
   border: 1px solid var(--color-acent);
   border-radius: 20px;
@@ -23,15 +28,15 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  
 }
 
 .contactForm label {
   font-size: 1rem;
 }
 
-.contactForm input, textarea {
-  width: 100%;
+.contactForm input, 
+textarea {
+  width: 95%;
   display: block;
   padding: 3%;
   border-radius: 10px;
@@ -39,17 +44,17 @@
   font-family: var(--font-fuente);
 }
 
-.contactForm textarea{
+.contactForm textarea {
   resize: none;
 }
 
-.contactForm button{
-    width: 50%;
-    min-height: 2rem;
-    align-self: center;
-    font-weight: bold;
-    font-family: var(--font-fuente);
-     background-color: color-mix(in srgb, var(--color-acent) 50%, transparent);
+.contactForm button {
+  width: 50%;
+  min-height: 2rem;
+  align-self: center;
+  font-weight: bold;
+  font-family: var(--font-fuente);
+  background-color: color-mix(in srgb, var(--color-acent) 50%, transparent);
   border: 1px solid var(--color-acent);
   border-radius: 10px;
   backdrop-filter: blur(56px);
