@@ -57,14 +57,14 @@ function crearNavbarRecursos() {
     ItemsubMenu.classList.add(class_ItemSubMenu);
     const btnSubmenu = document.createElement("button");
     btnSubmenu.textContent = menu.menu;
-    const spanSubmenu = document.createElement("span");
-    spanSubmenu.innerHTML = '<i class="fa-regular fa-circle-down"></i>';
-    btnSubmenu.appendChild(spanSubmenu);
     ItemsubMenu.appendChild(btnSubmenu);
 
     if (menu.submenu != null) {
+      const spanSubmenu = document.createElement("span");
+      spanSubmenu.innerHTML = '<i class="fa-regular fa-circle-down"></i>';
+      btnSubmenu.appendChild(spanSubmenu);
       btnSubmenu.classList.add(btn_toggle);
-    //   btnSubmenu.ariaExpanded = "false"; --> FORMA PARA NAVEGADORES MODERNOS
+      //   btnSubmenu.ariaExpanded = "false"; --> FORMA PARA NAVEGADORES MODERNOS
       btnSubmenu.setAttribute("aria-expanded", "false");
       const submenuUL = document.createElement("ul");
       submenuUL.classList.add(class_SubMenu);
