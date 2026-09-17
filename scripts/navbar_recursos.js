@@ -68,6 +68,7 @@ function crearNavbarRecursos() {
       btnSubmenu.setAttribute("aria-expanded", "false");
       const submenuUL = document.createElement("ul");
       submenuUL.classList.add(class_SubMenu);
+      submenuUL.hidden = true;
       ItemsubMenu.appendChild(submenuUL);
 
       menu.submenu.forEach((submenu) => {
@@ -83,5 +84,25 @@ function crearNavbarRecursos() {
     }
   });
 
+  function animacionMenu() {
+    const btnsToggle = document.querySelectorAll(".btn-toggle");
+    btnsToggle.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.ariaExpanded === "false") {
+          // console.log("click detectado en", btn.textContent);
+          btn.lastChild.innerHTML = '<i class="fa-regular fa-circle-up"></i>';
+          btn.nextSibling.hidden = false;
+          btn.ariaExpanded = true;
+        } else {
+          btn.lastChild.innerHTML = '<i class="fa-regular fa-circle-down"></i>';
+          btn.nextSibling.hidden = true;
+          btn.ariaExpanded = false;
+        }
+      });
+    });
+    console.log(btnsToggle);
+  }
+
+  animacionMenu();
   console.log(navRecursos);
 }
