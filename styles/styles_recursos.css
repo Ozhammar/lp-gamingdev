@@ -1,0 +1,29 @@
+#main #main_recursos{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#main_recursos iframe {
+    width: 70%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    padding: 2%;
+}
+
+.contenedor-submenu h4{
+    margin: 0;
+    padding: 0;
+    color: var(--color-acent);
+}
+#nav_recursos ul{
+    list-style: none;
+  margin: 0;
+    padding: 0;
+}
+#nav_recursos button{
+    width: 100%; 
+    font-family: var(--font-fuente);
+}

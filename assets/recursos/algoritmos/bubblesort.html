@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BubbleSort.exe — Game Dev Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #070b12;
+      --bg-panel: #0d141f;
+      --bg-panel-2: #111b29;
+      --line-grid: rgba(76, 201, 240, 0.06);
+      --neon-green: #3dffa0;
+      --neon-green-dim: rgba(61, 255, 160, 0.25);
+      --neon-pink: #ff3f8e;
+      --neon-pink-dim: rgba(255, 63, 142, 0.25);
+      --neon-blue: #4cc9f0;
+      --ink: #d8e6f2;
+      --ink-dim: #5c7085;
+      --border: #1c2a3a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg-deep);
+      color: var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+    }
+
+    .stage {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(76, 201, 240, 0.06), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 63, 142, 0.05), transparent 45%),
+        linear-gradient(180deg, var(--bg-panel) 0%, #0a1119 100%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4);
+    }
+
+    /* subtle scanline / grid texture, ambient not decorative-overload */
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 3px);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    /* ---------- TOP HUD ---------- */
+    .hud-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 22px 10px 22px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .title-block {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .title-block h1 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--neon-green);
+      margin: 0;
+      text-shadow: 0 0 12px var(--neon-green-dim), 0 0 2px var(--neon-green);
+    }
+
+    .title-block .sub {
+      font-size: 11px;
+      color: var(--ink-dim);
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--bg-panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      min-width: 78px;
+      text-align: center;
+    }
+
+    .stat .num {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--neon-blue);
+      line-height: 1.1;
+    }
+
+    .stat .lbl {
+      font-size: 8px;
+      color: var(--ink-dim);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    /* progress / level bar */
+    .level-bar-wrap {
+      position: relative;
+      z-index: 2;
+      padding: 10px 22px 0 22px;
+      flex-shrink: 0;
+    }
+
+    .level-bar-track {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bg-panel-2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .level-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+      box-shadow: 0 0 10px var(--neon-green-dim);
+      transition: width 0.35s ease;
+    }
+
+    .level-bar-caption {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--ink-dim);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---------- MAIN ---------- */
+    .main {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 16px;
+      padding: 14px 22px;
+      min-height: 0;
+    }
+
+    .panel {
+      background: rgba(13, 20, 31, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      color: var(--ink-dim);
+      flex-shrink: 0;
+    }
+
+    .panel-head .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--neon-green);
+      box-shadow: 0 0 6px var(--neon-green);
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* VISUALIZER */
+    .viz {
+      flex: 1;
+      position: relative;
+      padding: 20px 20px 14px 20px;
+      display: flex;
+      align-items: flex-end;
+      min-height: 0;
+    }
+
+    .viz-floor {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bar {
+      position: absolute;
+      bottom: 0;
+      width: 8%;
+      border-radius: 4px 4px 2px 2px;
+      background: linear-gradient(180deg, #1d3a52, #142334);
+      border: 1px solid rgba(76, 201, 240, 0.35);
+      transition: left 0.45s cubic-bezier(.4, 1.4, .4, 1), background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .bar .val {
+      position: relative;
+      top: -18px;
+      font-size: 11px;
+      color: var(--ink-dim);
+      font-weight: 500;
+    }
+
+    .bar.compare {
+      background: linear-gradient(180deg, #4a1730, #2b0e1e);
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 16px var(--neon-pink-dim);
+    }
+
+    .bar.compare .val {
+      color: var(--neon-pink);
+    }
+
+    .bar.swap {
+      background: linear-gradient(180deg, #5c1638, #2b0e1e);
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 26px var(--neon-pink);
+    }
+
+    .bar.sorted {
+      background: linear-gradient(180deg, #10402c, #0c2b1e);
+      border-color: var(--neon-green);
+      box-shadow: 0 0 14px var(--neon-green-dim);
+    }
+
+    .bar.sorted .val {
+      color: var(--neon-green);
+    }
+
+    .vs-badge {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--neon-pink);
+      background: rgba(20, 10, 16, 0.85);
+      border: 1px solid var(--neon-pink);
+      padding: 4px 8px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      box-shadow: 0 0 12px var(--neon-pink-dim);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .vs-badge.show {
+      opacity: 1;
+    }
+
+    .toast {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 6;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast.swap-toast {
+      color: var(--neon-pink);
+      background: rgba(20, 10, 16, 0.9);
+      border: 1px solid var(--neon-pink);
+      box-shadow: 0 0 14px var(--neon-pink-dim);
+    }
+
+    .toast.pass-toast {
+      color: var(--neon-green);
+      background: rgba(8, 20, 15, 0.9);
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 14px var(--neon-green-dim);
+    }
+
+    .victory-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 10, 16, 0.86);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 10;
+    }
+
+    .victory-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .victory-overlay h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 18px;
+      color: var(--neon-green);
+      text-shadow: 0 0 18px var(--neon-green);
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .victory-overlay p {
+      font-size: 11px;
+      color: var(--ink-dim);
+      margin: 0;
+    }
+
+    /* CODE PANEL */
+    .code-body {
+      flex: 1;
+      overflow: hidden;
+      padding: 10px 0;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .code-line {
+      padding: 1px 16px;
+      white-space: pre;
+      color: #7d92a8;
+      border-left: 3px solid transparent;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .code-line .kw {
+      color: #c792ea;
+    }
+
+    .code-line .ty {
+      color: #4cc9f0;
+    }
+
+    .code-line .fn {
+      color: #82e0ff;
+    }
+
+    .code-line .op {
+      color: #89ddff;
+    }
+
+    .code-line .num {
+      color: #f78c6c;
+    }
+
+    .code-line .idn {
+      color: #d8e6f2;
+    }
+
+    .code-line.active {
+      background: linear-gradient(90deg, rgba(61, 255, 160, 0.12), transparent);
+      border-left-color: var(--neon-green);
+      color: var(--ink);
+    }
+
+    .code-line.active .idn {
+      color: var(--neon-green);
+    }
+
+    .code-line.swap-active {
+      background: linear-gradient(90deg, rgba(255, 63, 142, 0.14), transparent);
+      border-left-color: var(--neon-pink);
+    }
+
+    /* ---------- BOTTOM CONTROLS ---------- */
+    .hud-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 22px 16px 22px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .ctrl-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--bg-panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--neon-blue);
+      color: var(--neon-blue);
+      box-shadow: 0 0 10px rgba(76, 201, 240, 0.2);
+    }
+
+    .ctrl-btn.active-toggle {
+      border-color: var(--neon-green);
+      color: var(--neon-green);
+      box-shadow: 0 0 10px var(--neon-green-dim);
+    }
+
+    .speed-group {
+      display: flex;
+      gap: 6px;
+      margin-left: auto;
+    }
+
+    .speed-btn {
+      font-size: 10px;
+      padding: 7px 10px;
+      border-radius: 5px;
+      background: var(--bg-panel-2);
+      border: 1px solid var(--border);
+      color: var(--ink-dim);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .speed-btn.selected {
+      color: var(--neon-blue);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 8px rgba(76, 201, 240, 0.25);
+    }
+
+    @media (max-width:760px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .title-block h1 {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stage" id="stage">
+
+    <div class="hud-top">
+      <div class="title-block">
+        <h1>BUBBLESORT.EXE</h1>
+        <span class="sub">// C# sorting algorithm — live run</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num" id="statPass">0/0</div>
+          <div class="lbl">PASADAS</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="statCompare">0</div>
+          <div class="lbl">COMPARAC.</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="statSwap">0</div>
+          <div class="lbl">SWAPS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-bar-wrap">
+      <div class="level-bar-track">
+        <div class="level-bar-fill" id="levelFill"></div>
+      </div>
+      <div class="level-bar-caption">
+        <span>PROGRESO DE ORDENAMIENTO</span>
+        <span id="levelPct">0%</span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="panel">
+        <div class="panel-head"><span><span class="dot"></span>ARRAY VIEW</span><span id="arrSize">n = 9</span></div>
+        <div class="viz">
+          <div class="viz-floor" id="vizFloor">
+            <div class="vs-badge" id="vsBadge">VS</div>
+            <div class="toast swap-toast" id="swapToast">SWAP!</div>
+            <div class="toast pass-toast" id="passToast">PASADA OK</div>
+          </div>
+          <div class="victory-overlay" id="victory">
+            <h2>LEVEL CLEAR</h2>
+            <p>array ordenado — reiniciando...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span><span class="dot"></span>SOURCE — BubbleSort.cs</span><span>C#</span></div>
+        <div class="code-body" id="codeBody"></div>
+      </div>
+    </div>
+
+    <div class="hud-bottom">
+      <button class="ctrl-btn active-toggle" id="playBtn">⏸ PAUSA</button>
+      <button class="ctrl-btn" id="restartBtn">⟲ REINICIAR</button>
+      <!-- <button class="ctrl-btn" id="muteBtn">🔇 SONIDO</button> -->
+      <div class="speed-group">
+        <button class="speed-btn" data-speed="1600">0.5x</button>
+        <button class="speed-btn" data-speed="800">1x</button>
+        <button class="speed-btn selected" data-speed="350">2x</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const codeLines = [
+        { n: 1, html: '<span class="kw">void</span> <span class="fn">BubbleSort</span>(<span class="ty">int</span>[] arr){' },
+        { n: 3, html: '    <span class="ty">int</span> n = arr.<span class="idn">Length</span>;', tag: 'init' },
+        { n: 4, html: '    <span class="kw">for</span> (<span class="ty">int</span> i = <span class="num">0</span>; i &lt; n - <span class="num">1</span>; i++){', tag: 'outer' },
+        { n: 6, html: '        <span class="kw">for</span> (<span class="ty">int</span> j = <span class="num">0</span>; j &lt; n - i - <span class="num">1</span>; j++){', tag: 'inner' },
+        { n: 8, html: '            <span class="kw">if</span> (arr[j] &gt; arr[j + <span class="num">1</span>]){', tag: 'compare' },
+        { n: 10, html: '                <span class="ty">int</span> temp = arr[j];', tag: 'swap' },
+        { n: 11, html: '                arr[j] = arr[j + <span class="num">1</span>];', tag: 'swap' },
+        { n: 12, html: '                arr[j + <span class="num">1</span>] = temp;}', tag: 'swap' },
+        { n: 14, html: '        }' },
+        { n: 15, html: '    }' },
+        { n: 16, html: '}' },
+      ];
+
+      const codeBody = document.getElementById('codeBody');
+      codeLines.forEach(l => {
+        const div = document.createElement('div');
+        div.className = 'code-line';
+        div.id = 'line-' + l.n;
+        div.innerHTML = l.html;
+        codeBody.appendChild(div);
+      });
+
+      function highlight(lineNums, swapMode) {
+        document.querySelectorAll('.code-line').forEach(el => {
+          el.classList.remove('active', 'swap-active');
+        });
+        lineNums.forEach(n => {
+          const el = document.getElementById('line-' + n);
+          if (el) el.classList.add(swapMode ? 'swap-active' : 'active');
+        });
+      }
+
+      // ---------- Audio ----------
+      // let audioCtx = null;
+      // let soundOn = false;
+      // function beep(freq, dur, type){
+      //   if(!soundOn) return;
+      //   if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      //   const osc = audioCtx.createOscillator();
+      //   const gain = audioCtx.createGain();
+      //   osc.type = type || 'square';
+      //   osc.frequency.value = freq;
+      //   gain.gain.value = 0.05;
+      //   osc.connect(gain); gain.connect(audioCtx.destination);
+      //   osc.start();
+      //   gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+      //   osc.stop(audioCtx.currentTime + dur);
+      // }
+
+      // ---------- Sort engine ----------
+      const N = 9;
+      let values = [];
+      let steps = [];
+      let stepIdx = 0;
+      let timer = null;
+      let speed = 400;
+      let playing = true;
+      let comparisons = 0, swaps = 0;
+
+      function shuffled() {
+        const arr = Array.from({ length: N }, (_, i) => i + 1);
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function buildSteps(arr) {
+        const a = arr.slice();
+        const out = [];
+        const n = a.length;
+        out.push({ type: 'init', lines: [3] });
+        for (let i = 0; i < n - 1; i++) {
+          out.push({ type: 'outer', i, lines: [4] });
+          for (let j = 0; j < n - i - 1; j++) {
+            out.push({ type: 'inner', i, j, lines: [6] });
+            out.push({ type: 'compare', i, j, lines: [8] });
+            if (a[j] > a[j + 1]) {
+              out.push({ type: 'swap', i, j, lines: [10, 11, 12] });
+              const t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;
+            }
+          }
+          out.push({ type: 'passend', i, lines: [4] });
+        }
+        out.push({ type: 'done', lines: [16] });
+        return out;
+      }
+
+      // ---------- DOM / render ----------
+      const vizFloor = document.getElementById('vizFloor');
+      const vsBadge = document.getElementById('vsBadge');
+      const swapToast = document.getElementById('swapToast');
+      const passToast = document.getElementById('passToast');
+      const victory = document.getElementById('victory');
+      let barEls = [];
+      let order = []; // order[position] = element index
+
+      function slotLeft(pos) {
+        const gap = 2.5;
+        const width = 8;
+        const totalWidth = N * width + (N - 1) * gap;
+        const startPct = (100 - totalWidth) / 2;
+        return startPct + pos * (width + gap);
+      }
+
+      function renderBars() {
+        vizFloor.querySelectorAll('.bar').forEach(b => b.remove());
+        barEls = values.map((v, idx) => {
+          const el = document.createElement('div');
+          el.className = 'bar';
+          el.style.height = (18 + v * 8) + '%';
+          el.style.left = slotLeft(idx) + '%';
+          el.innerHTML = '<span class="val">' + v + '</span>';
+          vizFloor.appendChild(el);
+          return el;
+        });
+        order = values.map((_, i) => i);
+      }
+
+      function setBarPosition(pos, elIndex) {
+        barEls[elIndex].style.left = slotLeft(pos) + '%';
+      }
+
+      function clearBarStates() {
+        barEls.forEach(b => b.classList.remove('compare', 'swap'));
+      }
+
+      function markSorted(fromPos) {
+        for (let p = fromPos; p < N; p++) {
+          barEls[order[p]].classList.add('sorted');
+        }
+      }
+
+      function showToast(el, text) {
+        if (text) el.textContent = text;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 420);
+      }
+
+      function updateStats(pass, totalPass) {
+        document.getElementById('statPass').textContent = pass + '/' + totalPass;
+        document.getElementById('statCompare').textContent = comparisons;
+        document.getElementById('statSwap').textContent = swaps;
+        const pct = Math.min(100, Math.round((pass / totalPass) * 100));
+        document.getElementById('levelFill').style.width = pct + '%';
+        document.getElementById('levelPct').textContent = pct + '%';
+      }
+
+      function reset() {
+        values = shuffled();
+        steps = buildSteps(values);
+        stepIdx = 0;
+        comparisons = 0; swaps = 0;
+        victory.classList.remove('show');
+        renderBars();
+        highlight([1]);
+        updateStats(0, N - 1);
+        vsBadge.classList.remove('show');
+      }
+
+      function step() {
+        if (stepIdx >= steps.length) {
+          victory.classList.add('show');
+          // beep(660,0.12,'triangle');
+          //setTimeout(()=>beep(880,0.14,'triangle'), 140);
+          //setTimeout(()=>beep(1100,0.22,'triangle'), 300);
+          setTimeout(() => { reset(); }, 2200);
+          return;
+        }
+        const s = steps[stepIdx];
+        clearBarStates();
+        vsBadge.classList.remove('show');
+
+        if (s.type === 'init') {
+          highlight(s.lines);
+        } else if (s.type === 'outer') {
+          highlight(s.lines);
+        } else if (s.type === 'inner') {
+          highlight(s.lines);
+        } else if (s.type === 'compare') {
+          highlight(s.lines);
+          comparisons++;
+          const posA = s.j, posB = s.j + 1;
+          barEls[order[posA]].classList.add('compare');
+          barEls[order[posB]].classList.add('compare');
+          vsBadge.style.left = (slotLeft(posA) + slotLeft(posB)) / 2 + 8 + '%';
+          vsBadge.classList.add('show');
+          // beep(300 + s.j*20, 0.05, 'square');
+          updateStats(s.i, N - 1);
+        } else if (s.type === 'swap') {
+          highlight(s.lines, true);
+          swaps++;
+          const posA = s.j, posB = s.j + 1;
+          const elA = order[posA], elB = order[posB];
+          order[posA] = elB; order[posB] = elA;
+          setBarPosition(posA, elB);
+          setBarPosition(posB, elA);
+          barEls[elA].classList.add('swap');
+          barEls[elB].classList.add('swap');
+          showToast(swapToast, 'SWAP!');
+          // beep(180, 0.09, 'sawtooth');
+          updateStats(s.i, N - 1);
+        } else if (s.type === 'passend') {
+          markSorted(N - 1 - s.i);
+          showToast(passToast, 'PASADA ' + (s.i + 1) + ' OK');
+          updateStats(s.i + 1, N - 1);
+        } else if (s.type === 'done') {
+          highlight(s.lines);
+          markSorted(0);
+          updateStats(N - 1, N - 1);
+        }
+
+        stepIdx++;
+      }
+
+      function loop() {
+        step();
+        if (playing) {
+          timer = setTimeout(loop, speed);
+        }
+      }
+
+      function play() {
+        playing = true;
+        document.getElementById('playBtn').textContent = '⏸ PAUSA';
+        document.getElementById('playBtn').classList.add('active-toggle');
+        clearTimeout(timer);
+        loop();
+      }
+      function pause() {
+        playing = false;
+        document.getElementById('playBtn').textContent = '▶ PLAY';
+        document.getElementById('playBtn').classList.remove('active-toggle');
+        clearTimeout(timer);
+      }
+
+      document.getElementById('playBtn').addEventListener('click', () => {
+        if (playing) pause(); else play();
+      });
+      document.getElementById('restartBtn').addEventListener('click', () => {
+        clearTimeout(timer);
+        reset();
+        if (playing) loop();
+      });
+      // document.getElementById('muteBtn').addEventListener('click', function(){
+      //   soundOn = !soundOn;
+      //   if(soundOn && !audioCtx){
+      //     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      //   }
+      //   if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      //   this.textContent = soundOn ? '🔊 SONIDO' : '🔇 SONIDO';
+      //   this.classList.toggle('active-toggle', soundOn);
+      // });
+      document.querySelectorAll('.speed-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          speed = parseInt(this.dataset.speed, 10);
+        });
+      });
+
+      reset();
+      loop();
+    })();
+  </script>
+
+</body>
+<!-- </html> -->
