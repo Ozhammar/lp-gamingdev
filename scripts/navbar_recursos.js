@@ -12,40 +12,36 @@ console.log(btn_toggle);
 
 const btn_item = "btn-item";
 console.log(btn_item);
-
+const DatosMenu = [
+  {
+    menu: "Algoritmos",
+    submenu: [
+      { nombre: "BubbleSort", url: "assets/recursos/algoritmos/bubblesort.html" },
+      { nombre: "QuickSort" },
+      { nombre: "MergeSort" },
+    ],
+  },
+  {
+    menu: "B",
+    //    submenu: [
+    //      {
+    //        nombre: "B1",
+    //      },
+    //      { nombre: "B2" },
+    //     { nombre: "B3" },
+    //   ],
+  },
+  {
+    menu: "Programacion Web",
+    submenu: [
+      { nombre: "NavBar Lateral en JavaScript" },
+      { nombre: "C2" },
+      { nombre: "C3" },
+    ],
+  },
+];
 function crearNavbarRecursos() {
   const navRecursos = document.getElementById("nav_recursos");
-
-  const DatosMenu = [
-    {
-      menu: "Algoritmos",
-      submenu: [
-        { nombre: "BubbleSort" }, //, url: "assets/algoritmos/bubblesort.html"
-        { nombre: "QuickSort" },
-        { nombre: "MergeSort" },
-      ],
-    },
-    {
-      menu: "B",
-      //    submenu: [
-      //      {
-      //        nombre: "B1",
-      //      },
-      //      { nombre: "B2" },
-      //     { nombre: "B3" },
-      //   ],
-    },
-    {
-      menu: "Programacion Web",
-      submenu: [
-        {
-          nombre: "C1",
-        },
-        { nombre: "C2" },
-        { nombre: "C3" },
-      ],
-    },
-  ];
 
   navRecursos.appendChild(document.createElement("ul"));
   const menuPrincipal = navRecursos.children[0];
@@ -76,11 +72,13 @@ function crearNavbarRecursos() {
         submenuUL.appendChild(submeLI);
         const btnItem = document.createElement("button");
         btnItem.classList.add(btn_item);
+        btnItem.addEventListener("click", () => mostrarContenido(submenu.url));
         btnItem.textContent = submenu.nombre;
         submeLI.appendChild(btnItem);
       });
     } else {
       btnSubmenu.classList.add(btn_item);
+      btnSubmenu.addEventListener("click", () => mostrarContenido(menu.url));
     }
   });
 
@@ -103,6 +101,11 @@ function crearNavbarRecursos() {
     console.log(btnsToggle);
   }
 
+  function mostrarContenido(url) {
+    const iframe = document.getElementById("contenido_recurso");
+
+    iframe.src = url ? url : "assets/error/404.html";
+  }
   animacionMenu();
   console.log(navRecursos);
 }
