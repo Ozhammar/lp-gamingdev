@@ -16,9 +16,9 @@ const DatosMenu = [
   {
     menu: "Algoritmos",
     submenu: [
-      { nombre: "BubbleSort", url: "assets/recursos/algoritmos/bubblesort.html" },
-      { nombre: "QuickSort" },
-      { nombre: "MergeSort" },
+      { nombre: "Bubble Sort", url: "assets/recursos/algoritmos/bubblesort.html"},
+      { nombre: "Selection Sort", url: "assets/recursos/algoritmos/selection.html"},
+      { nombre: "Insertion Sort", url: "assets/recursos/algoritmos/insertion.html" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const DatosMenu = [
   {
     menu: "Programacion Web",
     submenu: [
-      { nombre: "NavBar Lateral en JavaScript" },
-      { nombre: "C2" },
-      { nombre: "C3" },
+      { nombre: "NavBar Lateral en JavaScript", url: "" },
+      { nombre: "C2", url: "" },
+      { nombre: "C3", url: "" },
     ],
   },
 ];
