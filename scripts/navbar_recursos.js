@@ -22,7 +22,7 @@ const DatosMenu = [
     ],
   },
   {
-    menu: "B",
+    menu: "WIP",
     //    submenu: [
     //      {
     //        nombre: "B1",
