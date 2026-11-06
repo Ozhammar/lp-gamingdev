@@ -22,14 +22,20 @@ async function cargaLayout() {
 
 /*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
  */
-async function cargaModular(elemento = "recursos.html") {
+async function cargaModular(elemento = "faq.html") {
   const main = document.getElementById("main");
 
   try {
     let respMain = await fetch("pages/modulos/" + elemento);
     main.innerHTML = await respMain.text();
-    if(main.innerHTML.includes("main_recursos")){
-       crearNavbarRecursos();
+    if (main.innerHTML.includes("main_recursos")) {
+      crearNavbarRecursos();
+    }
+    if (main.innerHTML.includes("main_contacto")) {
+      inicializarFormContacto();
+    }
+    if (main.innerHTML.includes("main_faq")) {
+      crearFaq();
     }
   } catch (error) {
     console.error("Error cargando los módulos:", error);
