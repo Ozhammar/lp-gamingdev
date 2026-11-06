@@ -1,4 +1,4 @@
-#main #main_recursos{
+/*#main #main_recursos{
     width: 90%;
     display: flex;
     justify-content: center;
@@ -26,4 +26,83 @@
 #nav_recursos button{
     width: 100%; 
     font-family: var(--font-fuente);
+}
+*/
+#main #main_recursos {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#main_recursos iframe {
+  width: 70%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+  padding: 2%;
+}
+
+.contenedor-submenu h2 {
+  margin: 0;
+  padding: 0;
+  color: var(--color-acent);
+}
+
+#nav_recursos ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#nav_recursos button {
+  width: 100%;
+  font-family: var(--font-fuente);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 1. Botón de Menú Principal (Categorías) */
+#nav_recursos > ul > li > button {
+  color: var(--color-acent);
+  background-color: var(--color-menu); /*color de fondo de los menues*/
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+#nav_recursos > ul > li > button:hover {
+  color: var(--color-contenido);
+}
+
+#nav_recursos .submenu {
+  padding-left: 15px;
+}
+#nav_recursos span {
+  padding-left: 5px;
+}
+
+#nav_recursos .submenu button {
+  color: var(--color-acent);
+  background-color: var(--color-subMenu); /*color de fondo de los submenues*/
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  margin-bottom: 3px;
+  opacity: 0.8;
+  align-items: center;
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+#nav_recursos .submenu button:hover {
+  color: var(--color-contenido);
+  opacity: 1;
 }
