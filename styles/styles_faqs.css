@@ -1,0 +1,59 @@
+#main #main_faq {
+  width: 70%;
+  color: var(--color-acent);
+}
+
+#main_faq h2,
+#main_faq h3 {
+  color: var(--color-contenido);
+}
+
+.faq-categoria {
+  margin-bottom: 2rem;
+}
+
+.faq-item {
+  margin-bottom: 0.8rem;
+  padding: 1% 2%;
+  background-color: color-mix(in srgb, var(--color-contenido) 25%, transparent);
+  border: 1px solid var(--color-acent);
+  border-radius: 20px;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.faq-item summary:hover {
+  text-shadow: 0px 0px 10px var(--color-acent);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-acent);
+  outline-offset: 4px;
+}
+
+.faq-codigo {
+  margin: 1rem 0 0 0;
+  align-items: stretch;
+}
+
+.faq-codigo figcaption {
+  font-size: 0.9rem;
+  color: var(--color-contenido);
+}
+
+.faq-codigo pre {
+  margin: 0.3rem 0 0 0;
+  padding: 3%;
+  overflow-x: auto;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+.faq-codigo code {
+  font-family: monospace;
+  color: var(--color-acent);
+}
