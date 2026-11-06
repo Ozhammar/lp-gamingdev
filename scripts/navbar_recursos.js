@@ -1,17 +1,18 @@
 const class_MenuPrincipal = "menu";
-console.log(class_MenuPrincipal);
+//console.log(class_MenuPrincipal);
 
 const class_ItemSubMenu = "item-submenu";
-console.log(class_ItemSubMenu);
+//console.log(class_ItemSubMenu);
 
 const class_SubMenu = "submenu";
-console.log(class_SubMenu);
+//console.log(class_SubMenu);
 
 const btn_toggle = "btn-toggle";
-console.log(btn_toggle);
+//console.log(btn_toggle);
 
 const btn_item = "btn-item";
-console.log(btn_item);
+//console.log(btn_item);
+
 const DatosMenu = [
   {
     menu: "Algoritmos",
@@ -76,7 +77,9 @@ function crearNavbarRecursos() {
         btnItem.textContent = submenu.nombre;
         submeLI.appendChild(btnItem);
       });
-    } else {
+    } 
+    else 
+    {
       btnSubmenu.classList.add(btn_item);
       btnSubmenu.addEventListener("click", () => mostrarContenido(menu.url));
     }
@@ -98,7 +101,7 @@ function crearNavbarRecursos() {
         }
       });
     });
-    console.log(btnsToggle);
+    //console.log(btnsToggle);
   }
 
   function mostrarContenido(url) {
@@ -107,5 +110,6 @@ function crearNavbarRecursos() {
     iframe.src = url ? url : "assets/error/404.html";
   }
   animacionMenu();
-  console.log(navRecursos);
+  
+  //console.log(navRecursos);
 }
