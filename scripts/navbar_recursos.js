@@ -272,6 +272,49 @@ const DatosMenu = [
     ],
   },
 ];
+const DatosMenuEstaticos = [
+  {
+    menu: "Documentación y Recursos Web",
+    submenu: [
+      {
+        nombre: "W3C - Estándares Web",
+        url: "https://www.w3.org/",
+      },
+      {
+        nombre: "MDN - Guías HTML",
+        url: "https://developer.mozilla.org/es/docs/Web/HTML",
+      },
+      {
+        nombre: "MDN - Guías CSS",
+        url: "https://developer.mozilla.org/es/docs/Web/CSS",
+      },
+      {
+        nombre: "CSS-Tricks - Guías de Estilo",
+        url: "https://css-tricks.com/",
+      },
+      {
+        nombre: "MDN - JavaScript Guía",
+        url: "https://developer.mozilla.org/es/docs/Web/JavaScript",
+      },
+      {
+        nombre: "JavaScript.info - Tutoriales",
+        url: "https://es.javascript.info/",
+      },
+      {
+        nombre: "MS Learn - Desarrollo Web",
+        url: "https://learn.microsoft.com/es-es/training/paths/web-development-101/",
+      },
+      {
+        nombre: "MS Learn - C# y .NET",
+        url: "https://learn.microsoft.com/es-es/dotnet/csharp/",
+      },
+      {
+        nombre: "MS Learn - Azure Fundamentals",
+        url: "https://learn.microsoft.com/es-es/training/azure/",
+      },
+    ],
+  },
+];
 function crearNavbarRecursos() {
   const navRecursos = document.getElementById("nav_recursos");
 
@@ -304,13 +347,53 @@ function crearNavbarRecursos() {
         submenuUL.appendChild(submeLI);
         const btnItem = document.createElement("button");
         btnItem.classList.add(btn_item);
-        btnItem.addEventListener("click", () => mostrarContenido(submenu.url));
+        btnItem.addEventListener("click", () =>
+          mostrarContenidoDinamico(submenu.url),
+        );
         btnItem.textContent = submenu.nombre;
         submeLI.appendChild(btnItem);
       });
     } else {
       btnSubmenu.classList.add(btn_item);
-      btnSubmenu.addEventListener("click", () => mostrarContenido(menu.url));
+      btnSubmenu.addEventListener("click", () =>
+        mostrarContenidoDinamico(menu.url),
+      );
+    }
+  });
+
+  DatosMenuEstaticos.forEach((menu) => {
+    const elementoSubmenu = document.createElement("li");
+    const ItemsubMenu = menuPrincipal.appendChild(elementoSubmenu);
+    ItemsubMenu.classList.add(class_ItemSubMenu);
+
+    const btnSubmenu = document.createElement("button");
+    btnSubmenu.textContent = menu.menu;
+    ItemsubMenu.appendChild(btnSubmenu);
+
+    if (menu.submenu != null) {
+      const spanSubmenu = document.createElement("span");
+      spanSubmenu.innerHTML = '<i class="fa-regular fa-circle-down"></i>';
+      btnSubmenu.appendChild(spanSubmenu);
+      btnSubmenu.classList.add(btn_toggle);
+      btnSubmenu.setAttribute("aria-expanded", "false");
+
+      const submenuUL = document.createElement("ul");
+      submenuUL.classList.add(class_SubMenu);
+      submenuUL.hidden = true;
+      ItemsubMenu.appendChild(submenuUL);
+
+      menu.submenu.forEach((submenu) => {
+        const submeLI = document.createElement("li");
+        submenuUL.appendChild(submeLI);
+        const anchor = document.createElement("a");
+        anchor.href = submenu.url;
+        anchor.target = "_blank";
+        const btnItem = document.createElement("button");
+        btnItem.classList.add(btn_item);
+        btnItem.textContent = submenu.nombre;
+        anchor.appendChild(btnItem);
+        submeLI.appendChild(anchor);
+      });
     }
   });
 
@@ -341,7 +424,7 @@ function crearNavbarRecursos() {
     //console.log(btnsToggle);
   }
 
-  function mostrarContenido(url) {
+  function mostrarContenidoDinamico(url) {
     const iframe = document.getElementById("contenido_recurso");
 
     iframe.src = url ? url : "assets/error/404.html";
