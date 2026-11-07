@@ -1,0 +1,285 @@
+/* Sección Reviews.
+ * Lo general (fondo, fuente, centrado de #main, variables de color) sale de styles.css y styles_about.css.
+ * El menú reutiliza el lenguaje visual de styles_recursos.css; acá solo van las reglas propias de esta sección. */
+
+#main #main_reviews {
+  width: 90%;
+  color: var(--color-acent);
+}
+
+#main_reviews h2 {
+  color: var(--color-contenido);
+}
+
+.reviews-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* ---------- Menú lateral ---------- */
+
+#nav_reviews {
+  flex: 0 0 240px;
+}
+
+#nav_reviews ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#nav_reviews > ul > li {
+  margin-bottom: 0.5rem;
+}
+
+#nav_reviews button {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-fuente);
+  color: var(--color-acent);
+  background-color: var(--color-menu);
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+#nav_reviews .review-submenu {
+  margin-top: 0.4rem;
+  padding-left: 0.8rem;
+}
+
+#nav_reviews .review-submenu li {
+  margin-bottom: 0.3rem;
+}
+
+#nav_reviews .review-submenu button {
+  background-color: var(--color-subMenu);
+  opacity: 0.8;
+}
+
+#nav_reviews button:hover {
+  box-shadow: 0px 0px 10px var(--color-acent);
+}
+
+#nav_reviews button[aria-current="true"] {
+  opacity: 1;
+  font-weight: bold;
+  box-shadow: 0px 0px 10px var(--color-acent);
+}
+
+#nav_reviews button:focus-visible,
+#contenido_reviews button:focus-visible,
+#contenido_reviews a:focus-visible {
+  outline: 2px solid var(--color-acent);
+  outline-offset: 3px;
+}
+
+#contenido_reviews {
+  flex: 1 1 0;
+  min-width: 0;
+  margin-bottom: 1rem;
+}
+
+#contenido_reviews h3 {
+  margin-top: 0;
+  color: var(--color-contenido);
+}
+
+#contenido_reviews h3:focus {
+  outline: none;
+}
+
+#contenido_reviews h4 {
+  margin: 0 0 0.5rem;
+  color: var(--color-contenido);
+}
+
+.review-grilla {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1.2rem;
+}
+
+.review-tarjeta {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-fuente);
+  color: var(--color-acent);
+  background-color: var(--color-menu);
+  border: 1px solid var(--color-contenido);
+  border-radius: 20px;
+}
+
+.review-tarjeta:hover {
+  box-shadow: 0px 0px 12px var(--color-acent);
+}
+
+.review-tarjeta-imagen,
+.review-tarjeta-imagen-vacia {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.review-tarjeta-imagen-vacia,
+.review-imagen-vacia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--color-contenido);
+  background-color: var(--color-fondo);
+}
+
+.review-tarjeta-marca {
+  padding: 0.6rem 0.8rem 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--color-contenido);
+}
+
+.review-tarjeta-modelo {
+  padding: 0.2rem 0.8rem 0.8rem;
+  font-weight: bold;
+}
+
+.review-volver {
+  margin-bottom: 1rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-fuente);
+  color: var(--color-acent);
+  background-color: var(--color-menu);
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+.review-volver:hover {
+  box-shadow: 0px 0px 10px var(--color-acent);
+}
+
+.review-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.review-imagen,
+.review-imagen-vacia {
+  flex: 1 1 260px;
+  max-width: 420px;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+.review-resumen {
+  flex: 1 1 260px;
+}
+
+.review-puntaje {
+  font-size: 1.2rem;
+}
+
+.review-puntaje strong {
+  font-size: 1.8rem;
+  color: var(--color-contenido);
+}
+
+.review-tablas,
+.review-balance {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.review-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.review-tabla caption {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  color: var(--color-contenido);
+}
+
+.review-tabla th,
+.review-tabla td {
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-contenido) 40%, transparent);
+}
+
+.review-tabla th {
+  color: var(--color-contenido);
+}
+
+.review-pros,
+.review-contras,
+.review-fuentes {
+  padding: 1rem;
+  background-color: var(--color-menu);
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+.review-fuentes {
+  margin-bottom: 1rem;
+}
+
+.review-pros ul,
+.review-contras ul,
+.review-fuentes ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.review-fuentes a {
+  color: var(--color-contenido);
+}
+
+.review-aviso {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  #main #main_reviews {
+    width: 94%;
+  }
+
+  .reviews-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #nav_reviews {
+    flex: none;
+  }
+
+  .review-imagen,
+  .review-imagen-vacia {
+    max-width: 100%;
+  }
+}

@@ -22,7 +22,7 @@ async function cargaLayout() {
 
 /*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
  */
-async function cargaModular(elemento = "recursos.html") {
+async function cargaModular() {
   const main = document.getElementById("main");
 
   try {
@@ -36,6 +36,12 @@ async function cargaModular(elemento = "recursos.html") {
     }
     if (main.innerHTML.includes("main_faq")) {
       crearFaq();
+    }
+    if (main.innerHTML.includes("main_galeria")) {
+      crearGaleria();
+    }
+    if (main.innerHTML.includes("main_reviews")) {
+      crearReviews();
     }
   } catch (error) {
     console.error("Error cargando los módulos:", error);
