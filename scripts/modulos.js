@@ -22,7 +22,7 @@ async function cargaLayout() {
 
 /*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
  */
-async function cargaModular() {
+async function cargaModular(elemento = "noticias.html") {
   const main = document.getElementById("main");
 
   try {
@@ -43,6 +43,10 @@ async function cargaModular() {
     if (main.innerHTML.includes("main_reviews")) {
       crearReviews();
     }
+    if (main.innerHTML.includes("main_noticias")) {
+      crearNoticias();
+    }
+
   } catch (error) {
     console.error("Error cargando los módulos:", error);
   }
