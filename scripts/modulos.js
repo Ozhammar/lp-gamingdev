@@ -37,6 +37,9 @@ async function cargaModular(elemento = "recursos.html") {
     if (main.innerHTML.includes("main_faq")) {
       crearFaq();
     }
+    if (main.innerHTML.includes("main_galeria")) {
+      crearGaleria();
+    }
   } catch (error) {
     console.error("Error cargando los módulos:", error);
   }

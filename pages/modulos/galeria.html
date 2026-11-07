@@ -1,6 +1,33 @@
-<main>
-    <figure>
-    <img src="assets/imagenes/WIPS/WIP_galeria.jfif" alt="Banner de sitio en construcción con temática gamer y desarrollo de software, ambiente dark mode con luces RGB y elementos de código">
-    <figcaption>Sitio en construcción — próximamente más contenido</figcaption>
-    </figure>
+<main id="main_galeria">
+    <h2>Galería de Setups</h2>
+    <p>Una selección de setups gamer y de desarrollo. Hacé clic en una imagen para ver sus especificaciones.</p>
+
+    <ul id="lista_galeria"></ul>
+
+    <p class="galeria-creditos">Las imágenes pertenecen a sus autores y se muestran con su crédito.</p>
+
+    <dialog id="modal_galeria" class="galeria-modal" aria-labelledby="modal_titulo">
+        <div class="galeria-modal-contenido">
+            <div id="modal_imagen_contenedor"></div>
+            <div class="galeria-modal-detalle">
+                <h3 id="modal_titulo"></h3>
+                <p id="modal_autor"></p>
+                <table id="modal_specs">
+                    <caption>Especificaciones</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal_specs_cuerpo"></tbody>
+                </table>
+                <p id="modal_sin_specs" hidden>Este setup todavía no tiene especificaciones cargadas.</p>
+                <a id="modal_enlace" href="#" target="_blank" rel="noopener noreferrer" hidden>Ver publicación original</a>
+                <form method="dialog">
+                    <button type="submit" class="galeria-cerrar">Cerrar</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 </main>
