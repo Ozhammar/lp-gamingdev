@@ -608,7 +608,6 @@ function mostrarListadoReviews(enfocar = false) {
   if (enfocar) llevarFocoReview(titulo);
 }
 
-// Review completa de un equipo
 function mostrarReview(indice) {
   const item = DatosReviews[indice];
   const resena = item.resenaPersonal;
@@ -627,7 +626,6 @@ function mostrarReview(indice) {
   titulo.tabIndex = -1;
   articulo.appendChild(titulo);
 
-  // Imagen + puntaje y resumen
   const cabecera = crearElementoReview("div", "", "review-cabecera");
   cabecera.appendChild(crearImagenReview(item, class_ReviewImagen, false));
   const texto = crearElementoReview("div", "", "review-resumen");
@@ -638,19 +636,16 @@ function mostrarReview(indice) {
   cabecera.appendChild(texto);
   articulo.appendChild(cabecera);
 
-  // Tablas de especificaciones
   const tablas = crearElementoReview("div", "", "review-tablas");
   tablas.appendChild(crearTablaSpecsReview("Especificaciones técnicas", item.especificacionesTecnicas, EtiquetasSpecsTecnicas));
   tablas.appendChild(crearTablaSpecsReview("Pantalla y arquitectura", item.especificacionesArquitectura, EtiquetasSpecsArquitectura));
   articulo.appendChild(tablas);
 
-  // Pros y contras
   const balance = crearElementoReview("div", "", "review-balance");
   balance.appendChild(crearListaReview("Pros", resena.pros, "review-pros"));
   balance.appendChild(crearListaReview("Contras", resena.contras, "review-contras"));
   articulo.appendChild(balance);
 
-  // Fuentes
   if (item.fuentesInformacion.length > 0) {
     const fuentes = crearElementoReview("div", "", "review-fuentes");
     fuentes.appendChild(crearElementoReview("h4", "Fuentes de información"));
@@ -669,7 +664,6 @@ function mostrarReview(indice) {
     articulo.appendChild(fuentes);
   }
 
-  // El menú acompaña lo que se ve a la derecha: marca abierta y modelo resaltado
   marcarActivoReviews(indice);
   abrirSoloMarca(botonesMarcaReview.get(item.marca));
   llevarFocoReview(titulo);
