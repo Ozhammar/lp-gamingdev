@@ -27,7 +27,7 @@ const DatosFiltrosNoticias = [
       { texto: "Ingles", valor: "en" },
       { texto: "Español", valor: "es" },
     ],
-    porDefecto: "es",
+    porDefecto: "en",
   },
   {
     id: "filtro_tema",
@@ -42,7 +42,7 @@ const DatosFiltrosNoticias = [
       { texto: "IA", valor: "ai" },
       { texto: "Videojuegos", valor: "gamedev" },
     ],
-    porDefecto: "programming",
+    porDefecto: "javascript",
   },
   {
     id: "filtro_antiguedad",
@@ -53,7 +53,7 @@ const DatosFiltrosNoticias = [
       { texto: "Último mes", valor: "30" },
       { texto: "Último año", valor: "365" },
     ],
-    porDefecto: "7",
+    porDefecto: "365",
   },
 ];
 
@@ -72,7 +72,7 @@ function crearFiltrosNoticias() {
       select.appendChild(elemento);
     });
     select.value = filtro.porDefecto;
-    //select.addEventListener("change", cargarNoticias);
+    select.addEventListener("change", obtenerNoticias);
 
     grupo.append(etiqueta, select);
     contenedor.appendChild(grupo);
@@ -82,22 +82,24 @@ function crearFiltrosNoticias() {
 //funcion asincronica para solicitar a la API de dev.to las noticias mas recientes
 async function obtenerNoticias() {
     //CONSTANTES DE LA SELECCION DE LOS FILTROS, PARA PODER USARLOS EN LA URL DE LA API
- const cantidadd = document.getElementById("filtro_cantidad").value;
+  const cantidad = document.getElementById("filtro_cantidad").value;
+  const idioma = document.getElementById("filtro_idioma").value;
   const tema = document.getElementById("filtro_tema").value;
   const antiguedad = document.getElementById("filtro_antiguedad").value;
-console.log("Cantidad: " + cantidadd + ", Tema: " + tema + ", Antigüedad: " + antiguedad);
+  console.log("Cantidad: " + cantidad + ", Tema: " + tema + ", Antigüedad: " + antiguedad);
 
   const respuesta = await fetch(
-    `https://dev.to/api/articles?top=60&tag=programming&tag=spanish&per_page=10`,
+    `https://dev.to/api/articles?top=${antiguedad}&tag=${tema}&tag=${idioma}&per_page=${cantidad}`,
   );
   const data = await respuesta.json();
   noticias = data;
+  console.log(data);
   noticias.forEach((element) => {
-    //console.log(element.title);
+    console.log(element.title);
   });
 }
 
-
+//FALTA LA FUNCION PARA CARGAR LOS DATOS DE LAS NOTICIAS EN CONTENEDORES
 
 
 function crearNoticias() {
