@@ -24,10 +24,10 @@ const DatosFiltrosNoticias = [
     id: "filtro_idioma",
     etiqueta: "Idioma",
     opciones: [
-      { texto: "Ingles", valor: "en" },
-      { texto: "Español", valor: "es" },
+      { texto: "Ingles", valor: "english" },
+      { texto: "Español", valor: "spanish" },
     ],
-    porDefecto: "en",
+    porDefecto: "spanish",
   },
   {
     id: "filtro_tema",
@@ -42,7 +42,7 @@ const DatosFiltrosNoticias = [
       { texto: "IA", valor: "ai" },
       { texto: "Videojuegos", valor: "gamedev" },
     ],
-    porDefecto: "javascript",
+    porDefecto: "",
   },
   {
     id: "filtro_antiguedad",
@@ -53,7 +53,7 @@ const DatosFiltrosNoticias = [
       { texto: "Último mes", valor: "30" },
       { texto: "Último año", valor: "365" },
     ],
-    porDefecto: "365",
+    porDefecto: "7",
   },
 ];
 
@@ -86,7 +86,7 @@ async function obtenerNoticias() {
   const idioma = document.getElementById("filtro_idioma").value;
   const tema = document.getElementById("filtro_tema").value;
   const antiguedad = document.getElementById("filtro_antiguedad").value;
-  console.log("Cantidad: " + cantidad + ", Tema: " + tema + ", Antigüedad: " + antiguedad);
+  console.log("Cantidad: " + cantidad + ", Tema: " + tema +", Idioma: " + idioma + ", Antigüedad: " + antiguedad);
 
   const respuesta = await fetch(
     `https://dev.to/api/articles?top=${antiguedad}&tag=${tema}&tag=${idioma}&per_page=${cantidad}`,
