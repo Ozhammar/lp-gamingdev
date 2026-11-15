@@ -42,7 +42,7 @@ const DatosFiltrosNoticias = [
       { texto: "IA", valor: "ai" },
       { texto: "Videojuegos", valor: "gamedev" },
     ],
-    porDefecto: "",
+    porDefecto: "javascript",
   },
   {
     id: "filtro_antiguedad",
@@ -53,7 +53,7 @@ const DatosFiltrosNoticias = [
       { texto: "Último mes", valor: "30" },
       { texto: "Último año", valor: "365" },
     ],
-    porDefecto: "7",
+    porDefecto: "1",
   },
 ];
 
