@@ -15,5 +15,17 @@ body {
     font-family: var(--font-fuente);
 }
 
+html::-webkit-scrollbar {
+  width: 8px;
+}
 
+html::-webkit-scrollbar-thumb {
+  background-color: var(--color-contenido);
+  border: #1B1C1D solid 1px;
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: var(--color-fondo);
+}
 

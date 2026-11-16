@@ -1,0 +1,125 @@
+### Guía 1: Perfil Desarrollador (Programación, Datos e IA Local)
+
+**Enfoque principal:** Estabilidad, multitarea pesada (contenedores Docker, máquinas virtuales, IDEs abiertos en simultáneo) y velocidad de lectura/escritura. No requiere potencia gráfica extrema salvo que se entrene modelos de IA localmente.
+
+* **Prioridad #1 — Memoria RAM:** Es el cuello de botella más común. Mínimo **32 GB** (ideal 64 GB si trabajas con contenedores, emuladores móviles o bases de datos locales).
+* **Prioridad #2 — Procesador (CPU):** Se prioriza cantidad de núcleos e hilos para compilación rápida y virtualización (ej. Ryzen 7 / Core Ultra 7 o superior).
+* **Prioridad #3 — Almacenamiento:** SSD NVMe Gen4 de al menos **1 TB** con buena resistencia (TBW), ya que compilar código y mover imágenes de contenedores desgasta el disco.
+* **Tarjeta Gráfica (GPU):** Gráficos integrados alcanzan para desarrollo web, mobile y backend. Solo se justifica una dedicada (con buena VRAM, ej. 12 GB+) si haces Machine Learning local o desarrollo de videojuegos.
+* **Periféricos clave:** Teclado mecánico cómodo (switches táctiles o lineales silenciosos) y monitor IPS de **27" QHD (1440p)** o configuración doble monitor para leer código sin fatiga visual.
+
+| Componente | Nivel Recomendado (Dulce) | Nivel Avanzado (IA / Virtualización) |
+| --- | --- | --- |
+| **CPU** | 8 núcleos / 16 hilos | 12 a 16 núcleos |
+| **RAM** | 32 GB DDR5 | 64 GB DDR5 |
+| **GPU** | Integrada en CPU | Dedicada con 12 GB - 16 GB VRAM |
+| **Almacenamiento** | 1 TB NVMe PCIe 4.0 | 2 TB NVMe PCIe 4.0 |
+| **Pantalla** | 27" IPS 1440p (60-75 Hz) | Doble 27" 1440p o 32" 4K |
+
+---
+
+### Guía 2: Perfil Gamer (Rendimiento en Juegos y Fluidez)
+
+**Enfoque principal:** Maximizar fotogramas por segundo (FPS), baja latencia de respuesta y calidad visual en resoluciones 1080p, 1440p o 4K.
+
+* **Prioridad #1 — Tarjeta Gráfica (GPU):** Se lleva entre el 40% y el 50% del presupuesto total. Define a qué resolución y calidad gráfica puedes jugar.
+* **Prioridad #2 — Procesador (CPU):** Se busca alto rendimiento por núcleo (*single-core*) y cachés grandes (como la línea X3D de AMD) para evitar cuellos de botella en juegos competitivos.
+* **Prioridad #3 — Monitor:** Un equipo potente se desperdicia en una pantalla lenta. Se busca panel IPS u OLED con tasa de refresco de **144 Hz a 240 Hz** y tiempo de respuesta de **1 ms**.
+* **Memoria RAM y Almacenamiento:** Con **16 GB a 32 GB** en *Dual Channel* (dos módulos) es suficiente. Un SSD NVMe de 1 TB o 2 TB agiliza las pantallas de carga (DirectStorage), sin necesidad de velocidades extremas.
+* **Refrigeración y Fuente:** Gabinete con buen flujo de aire (*mesh* frontal) y fuente certificada (80 Plus Gold) con margen suficiente para picos de consumo de la GPU.
+
+| Componente | Nivel Competitivo (1080p / 1440p) | Nivel Entusiasta (1440p Ultra / 4K) |
+| --- | --- | --- |
+| **CPU** | 6 a 8 núcleos (alto rendimiento single-core) | 8 núcleos optimizados para gaming |
+| **RAM** | 32 GB DDR5 (Dual Channel) | 32 GB DDR5 baja latencia |
+| **GPU** | Gama media-alta (8 GB - 12 GB VRAM) | Gama alta (16 GB+ VRAM) |
+| **Almacenamiento** | 1 TB NVMe | 2 TB NVMe |
+| **Pantalla** | 24" o 27" 165 Hz+ (1 ms) | 27" 1440p 240 Hz o 32" 4K OLED |
+
+---
+
+### Guía 3: Perfil Híbrido — Gamer + Desarrollador (Estación Todo Terreno)
+
+**Enfoque principal:** Equilibrar la capacidad de cómputo y memoria del desarrollador con la potencia gráfica y fluidez visual del gamer, cuidando el ruido y el consumo cuando se trabaja.
+
+* **El punto de equilibrio:** No se recorta ni en GPU ni en RAM. Se busca una máquina silenciosa en tareas de escritorio que despliegue toda su potencia al compilar o abrir un juego.
+* **Procesador (CPU):** Necesita tanto buen rendimiento por núcleo (para juegos) como suficientes núcleos totales (para compilar y correr servidores locales). Un procesador de 8 a 12 núcleos modernos es el punto ideal.
+* **Memoria RAM:** **32 GB DDR5** como estándar obligatorio (cubre cualquier juego actual y permite tener el IDE, navegador y contenedores abiertos sin cerrar todo antes de jugar).
+* **Tarjeta Gráfica (GPU):** Se recomiendan modelos con **12 GB o 16 GB de VRAM** (especialmente NVIDIA por compatibilidad con CUDA si el desarrollador explora IA, además de DLSS para gaming).
+* **Almacenamiento separado:** Idealmente **dos discos NVMe** (o uno de 2 TB particionado): uno destinado al sistema, proyectos y entornos de trabajo, y otro exclusivo para la biblioteca de juegos pesados.
+* **Monitor versátil:** Un panel **27" IPS QHD (2560x1440) de 165 Hz** con buena fidelidad de color (99% sRGB) ofrece nitidez de texto para programar y fluidez total para jugar.
+
+| Componente | Configuración Equilibrada (Recomendada) |
+| --- | --- |
+| **CPU** | 8 a 12 núcleos híbridos de última generación |
+| **RAM** | 32 GB DDR5 (ampliable a 64 GB) |
+| **GPU** | Gama media-alta / alta con 12 GB - 16 GB VRAM |
+| **Almacenamiento** | 1 TB NVMe (Trabajo/SO) + 1 TB NVMe (Juegos) |
+| **Pantalla** | 27" QHD (1440p) IPS, 165 Hz, 99% sRGB |
+
+---
+
+### Guía 4: Perfil Estudiante y Programador Móvil (Notebook)
+
+**Enfoque principal:** Equilibrio entre portabilidad, autonomía de batería y comodidad de trabajo. Es el equipo que se lleva a clases, a la biblioteca y al transporte, así que pesa tanto el peso como la pantalla y el teclado.
+
+* **Prioridad #1 — Autonomía y peso:** Se busca una batería de al menos **60 a 75 Wh** y un peso de hasta **1,5 a 1,8 kg**. Un equipo potente que no se puede cargar todo el día pierde su razón de ser.
+* **Prioridad #2 — Memoria RAM:** Mínimo **16 GB**, ideal 32 GB si usas máquinas virtuales o contenedores. En muchas notebooks la RAM viene soldada y no se puede ampliar, así que hay que comprar la cantidad definitiva desde el inicio.
+* **Prioridad #3 — Procesador (CPU):** Se prioriza la eficiencia energética además de los núcleos: un procesador de 8 núcleos modernos rinde bien y calienta menos que uno de alta potencia.
+* **Pantalla y teclado:** Panel de **14" a 16" en formato 16:10** (más líneas de código visibles), IPS u OLED, con **300 nits o más** de brillo. El teclado cómodo y retroiluminado importa tanto como cualquier componente.
+* **Almacenamiento y conectividad:** SSD NVMe de **512 GB a 1 TB**, puertos USB-C con carga rápida (Power Delivery), Wi-Fi 6E o 7 y, si es posible, un puerto HDMI para proyectar.
+* **Tarjeta Gráfica (GPU):** Los gráficos integrados alcanzan para programar y estudiar. Una dedicada solo se justifica para juegos o diseño 3D, a cambio de más peso y menos batería.
+
+| Componente | Nivel Recomendado (Estudio y desarrollo) | Nivel Avanzado (Virtualización / juegos ocasionales) |
+| --- | --- | --- |
+| **CPU** | 8 núcleos eficientes | 8 a 12 núcleos de alto rendimiento |
+| **RAM** | 16 GB (idealmente ampliable) | 32 GB |
+| **GPU** | Integrada | Dedicada de gama media |
+| **Almacenamiento** | 512 GB NVMe | 1 TB NVMe |
+| **Pantalla** | 14"–16" IPS 16:10, 300 nits | 16" OLED o Mini LED, 120 Hz |
+| **Batería / Peso** | 60–75 Wh / hasta 1,5 kg | 80–99 Wh / 1,8–2,5 kg |
+
+---
+
+### Guía 5: Perfil Presupuesto Ajustado (Primera PC)
+
+**Enfoque principal:** Obtener la mejor relación entre costo y rendimiento, y armar una base que se pueda mejorar con el tiempo en lugar de comprar todo de una vez.
+
+* **Prioridad #1 — Dónde sí gastar:** La **fuente de poder certificada** (80 Plus Bronze o superior), la memoria RAM en **dual channel** y un SSD. Recortar aquí puede dañar el equipo o hacerlo lento.
+* **Prioridad #2 — Procesador (CPU):** Uno de **6 núcleos modernos** alcanza para estudiar, programar y jugar en 1080p. Si el procesador trae gráficos integrados, se puede arrancar sin placa de video y sumarla después.
+* **Prioridad #3 — Tarjeta Gráfica (GPU):** Es lo que más se nota al jugar. En un presupuesto chico conviene una de gama media-baja con **8 GB de VRAM** antes que gastar de más en procesador.
+* **Plataforma actualizable:** Elegir una placa madre con un socket que todavía tenga procesadores nuevos por venir permite mejorar la PC más adelante sin cambiarla entera.
+* **Componentes usados o reacondicionados:** Pueden ser una buena opción en placas de video y gabinetes, pero siempre con garantía o posibilidad de devolución, y nunca en la fuente.
+* **Monitor:** Un panel **1080p IPS de 100 a 144 Hz** es el punto dulce. Un monitor de gama alta en una PC básica es dinero mal gastado.
+
+| Componente | Nivel Inicial (Estudio, programación y juegos livianos) | Nivel Gaming 1080p |
+| --- | --- | --- |
+| **CPU** | 6 núcleos con gráficos integrados | 6 núcleos, buen rendimiento por núcleo |
+| **RAM** | 16 GB DDR5 (Dual Channel) | 16 a 32 GB DDR5 |
+| **GPU** | Integrada (se suma una dedicada después) | Gama media-baja, 8 GB VRAM |
+| **Almacenamiento** | 500 GB NVMe | 1 TB NVMe |
+| **Fuente** | 500–550 W certificada | 600–650 W certificada |
+| **Pantalla** | 24" IPS 1080p 75 Hz | 24" IPS 1080p 144 Hz |
+
+---
+
+### Guía 6: Perfil Creador de Contenido (Edición, Streaming y Diseño 3D)
+
+**Enfoque principal:** Mantener fluidez al editar video, renderizar y transmitir en vivo, con color confiable y poco ruido durante sesiones largas.
+
+* **Prioridad #1 — Procesador (CPU):** Cuantos más núcleos e hilos, más rápido se renderiza. Se recomiendan **12 a 16 núcleos** para edición de video en 4K y modelado 3D, y de 8 a 12 para edición en 1080p y streaming.
+* **Prioridad #2 — Tarjeta Gráfica (GPU):** Importa la **cantidad de VRAM (12 GB o más)** y que tenga un codificador de video por hardware (como NVENC de NVIDIA), que acelera la exportación y permite transmitir sin castigar el procesador. Los programas de 3D y de edición suelen aprovechar mejor las placas NVIDIA.
+* **Prioridad #3 — Memoria RAM:** **32 GB** como mínimo, **64 GB** si trabajas con video 4K, efectos o escenas 3D complejas.
+* **Almacenamiento por capas:** Un SSD NVMe rápido para el sistema y los proyectos en curso, otro más grande para el material y un disco externo o NAS para respaldo. Perder un proyecto es más caro que cualquier componente.
+* **Monitor con color confiable:** Panel IPS u OLED con **cobertura de color del 99% sRGB** (o DCI-P3 si el trabajo es para cine) y, de ser posible, calibrado de fábrica. Un monitor con colores falsos arruina la edición.
+* **Refrigeración y ruido:** Si grabas audio o transmites en vivo, importa un gabinete con buen flujo de aire y ventiladores silenciosos, para que el micrófono no capte el ruido de la PC.
+
+| Componente | Edición 1080p y Streaming | Nivel Avanzado (4K y 3D) |
+| --- | --- | --- |
+| **CPU** | 8 a 12 núcleos | 12 a 16 núcleos o más |
+| **RAM** | 32 GB DDR5 | 64 GB DDR5 |
+| **GPU** | Gama media-alta, 12 GB VRAM, codificador por hardware | Gama alta, 16 GB+ VRAM |
+| **Almacenamiento** | 1 TB NVMe (trabajo) + 2 TB (archivo) | 2 TB NVMe (trabajo) + 4 TB (archivo) + respaldo |
+| **Pantalla** | 27" IPS 1440p, 99% sRGB | 27" 4K IPS o OLED con calibración, 99% DCI-P3 |
+
+---
