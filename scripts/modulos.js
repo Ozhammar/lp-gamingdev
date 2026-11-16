@@ -51,6 +51,7 @@ async function cargaModular(elemento = "testimonios.html") {
         crearTestimonios();
         break;
       case "guia_compras.html":
+        crearGuiaCompras();
         break;
       case "home.html":
         break;
