@@ -10,8 +10,8 @@ const firebaseConfig = {
 };
 
 //SDK Y COLECCION NOSQL
-const SDK = "https//www.gstatic.com/firebasejs/10.12.2/";
-const collecion = "testimonios";
+const SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+const coleccion = "testimonios";
 
 //GESTION DE LA CONEXION
 let conexion = null;
@@ -19,6 +19,8 @@ let conexion = null;
 function conectar() {
   if (!conexion) {
     conexion = inicializarConexion();
+
+    conexion.catch(() => { conexion = null;});
   }
   return conexion;
 }
@@ -37,7 +39,7 @@ async function inicializarConexion() {
 async function guardarTestimonio(testimonio) {
   const { db, firestore } = await conectar();
 
-  await firestore.addDoc(firestore.collection(db, colleccion), {
+  await firestore.addDoc(firestore.collection(db, coleccion), {
     nombre: testimonio.nombre,
     estrellas: Number(testimonio.estrellas),
     comentario: testimonio.comentario,
@@ -46,9 +48,9 @@ async function guardarTestimonio(testimonio) {
 }
 
 async function obtenerTestimonios(cantidad = 20) {
-  const { db, firestore } = await conectarFirebase();
+  const { db, firestore } = await conectar();
   const consulta = firestore.query(
-    firestore.collection(db, coleccionTestimonios),
+    firestore.collection(db, coleccion),
     firestore.orderBy("fecha", "desc"),
     firestore.limit(cantidad),
   );
