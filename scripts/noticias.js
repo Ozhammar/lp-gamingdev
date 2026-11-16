@@ -15,10 +15,11 @@ const DatosFiltrosNoticias = [
     opciones: [
       { texto: "5", valor: "5" },
       { texto: "10", valor: "10" },
+      { texto: "15", valor: "15" },
       { texto: "20", valor: "20" },
       { texto: "30", valor: "30" },
     ],
-    porDefecto: "10",
+    porDefecto: "15",
   },
   {
     id: "filtro_idioma",
@@ -42,7 +43,7 @@ const DatosFiltrosNoticias = [
       { texto: "IA", valor: "ai" },
       { texto: "Videojuegos", valor: "gamedev" },
     ],
-    porDefecto: "javascript",
+    porDefecto: "",
   },
   {
     id: "filtro_antiguedad",
@@ -53,7 +54,7 @@ const DatosFiltrosNoticias = [
       { texto: "Último mes", valor: "30" },
       { texto: "Último año", valor: "365" },
     ],
-    porDefecto: "1",
+    porDefecto: "365",
   },
 ];
 
@@ -102,7 +103,6 @@ async function obtenerNoticias() {
   const antiguedad = document.getElementById("filtro_antiguedad").value;
   let tema = document.getElementById("filtro_tema").value;
 
-
   /*console.log(
     "Cantidad: " +
       cantidad +
@@ -114,9 +114,7 @@ async function obtenerNoticias() {
       antiguedad,
   );*/
 
-  const respuesta = await fetch(
-    `https://dev.to/api/articles?top=${antiguedad}&tag=${tema}&tag=${idioma}&per_page=${cantidad}`,
-  );
+  const respuesta = await fetch(`https://dev.to/api/articles?top=${antiguedad}&tag=${tema}&tag=${idioma}&per_page=${cantidad}`);
 
   const data = await respuesta.json();
   noticias = data;
@@ -127,7 +125,7 @@ async function obtenerNoticias() {
 
 function cargarNoticias() {
   const lista = document.getElementById("lista_noticias");
-  lista.replaceChildren(); // limpia lo anterior
+  lista.replaceChildren(); // LIMPIA LAS NOTICIAS ANTERIORES
   if (noticias.length === 0) {
     lista.appendChild(
       crearElementoNoticias("li", "No hay noticias con esos filtros."),
@@ -188,22 +186,19 @@ function abrirModalNoticia(noticia) {
   );
   modal.appendChild(crearElementoNoticias("p", noticia.description));
 
-  const enlace = crearElementoNoticias(
-    "a",
-    "Leer el artículo completo (se abre en una pestaña nueva)",
-  );
+  const enlace = crearElementoNoticias("a");
   enlace.href = noticia.url;
   enlace.target = "_blank";
   enlace.rel = "noopener noreferrer";
   modal.appendChild(enlace);
 
-  // method="dialog": el botón cierra el modal sin código extra
+  // CON .METHOD = "DIALOG" SE CIERRA EL MODAL
   const formulario = document.createElement("form");
   formulario.method = "dialog";
   formulario.appendChild(crearElementoNoticias("button", "Cerrar"));
   modal.appendChild(formulario);
 
-  modal.showModal(); // Esc también cierra
+  modal.showModal();
 }
 
 function crearNoticias() {
