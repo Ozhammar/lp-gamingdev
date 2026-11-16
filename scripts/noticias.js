@@ -119,7 +119,7 @@ async function obtenerNoticias() {
   const data = await respuesta.json();
   noticias = data;
   cargarNoticias();
-  console.log(data);
+ // console.log(data);
   //noticias.forEach((element) => {    console.log(element.title);  });
 }
 
