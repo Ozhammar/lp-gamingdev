@@ -1,0 +1,120 @@
+#main #main_home {
+  width: 90%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+  gap: 2rem;
+  color: var(--color-acent);
+}
+
+#main_home h2,
+#main_home h3,
+#main_home h4 {
+  color: var(--color-contenido);
+}
+
+#main_home h2 {
+  margin-top: 0;
+}
+
+#main_home button {
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--font-fuente);
+  font-weight: bold;
+  color: var(--color-acent);
+  background-color: var(--color-menu);
+  border: 1px solid var(--color-contenido);
+  border-radius: 10px;
+}
+
+#main_home button:hover {
+  box-shadow: 0px 0px 10px var(--color-acent);
+}
+
+#main_home button:focus-visible,
+#main_home a:focus-visible {
+  outline: 2px solid var(--color-acent);
+  outline-offset: 3px;
+}
+
+#accesos_destacados_home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#tarjetas_destacados_home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+#tarjetas_destacados_home .home-tarjeta {
+  margin-bottom: 0;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-contenido);
+}
+
+#review_home {
+  padding: 1rem;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-contenido);
+  border-radius: 20px;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+#review_home h3 {
+  margin-top: 0;
+}
+
+.home-tarjeta {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: color-mix(in srgb, var(--color-menu) 60%, transparent);
+  border-radius: 15px;
+}
+
+.home-tarjeta:last-child {
+  margin-bottom: 0;
+}
+
+.home-tarjeta h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.home-tarjeta p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.home-tarjeta .home-destacado {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.home-tarjeta button {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.home-tarjeta a {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-contenido);
+}
+
+.home-imagen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 0.6rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
