@@ -278,6 +278,65 @@ const datosGuias = [
       },
     ],
   },
+    {
+    titulo: "Perfil Creador de Contenido (Edición, Streaming y Diseño 3D)",
+    enfoque:
+      "Mantener fluidez al editar video, renderizar y transmitir en vivo, con color confiable y poco ruido durante sesiones largas.",
+    prioridades: [
+      {
+        titulo: "Procesador (CPU)",
+        texto:
+          "Cuantos más núcleos e hilos, más rápido se renderiza. Se recomiendan 12 a 16 núcleos para edición de video en 4K y modelado 3D, y de 8 a 12 para edición en 1080p y streaming.",
+      },
+      {
+        titulo: "Tarjeta gráfica (GPU)",
+        texto:
+          "Importa la cantidad de VRAM (12 GB o más) y que tenga un codificador de video por hardware (como NVENC de NVIDIA), que acelera la exportación y permite transmitir sin castigar el procesador. Los programas de 3D y de edición suelen aprovechar mejor las placas NVIDIA.",
+      },
+      {
+        titulo: "Memoria RAM",
+        texto:
+          "32 GB como mínimo, 64 GB si trabajas con video 4K, efectos o escenas 3D complejas.",
+      },
+      {
+        titulo: "Almacenamiento por capas",
+        texto:
+          "Un SSD NVMe rápido para el sistema y los proyectos en curso, otro más grande para el material y un disco externo o NAS para respaldo. Perder un proyecto es más caro que cualquier componente.",
+      },
+      {
+        titulo: "Monitor con color confiable",
+        texto:
+          "Panel IPS u OLED con cobertura de color del 99% sRGB (o DCI-P3 si el trabajo es para cine) y, de ser posible, calibrado de fábrica. Un monitor con colores falsos arruina la edición.",
+      },
+      {
+        titulo: "Refrigeración y ruido",
+        texto:
+          "Si grabas audio o transmites en vivo, importa un gabinete con buen flujo de aire y ventiladores silenciosos, para que el micrófono no capte el ruido de la PC.",
+      },
+    ],
+    componentes: [
+      {
+        nivel: "Edición 1080p y Streaming",
+        especificaciones: {
+          CPU: "8 a 12 núcleos",
+          RAM: "32 GB DDR5",
+          GPU: "Gama media-alta, 12 GB VRAM, codificador por hardware",
+          Almacenamiento: "1 TB NVMe (trabajo) + 2 TB (archivo)",
+          Pantalla: '27" IPS 1440p, 99% sRGB',
+        },
+      },
+      {
+        nivel: "Nivel Avanzado (4K y 3D)",
+        especificaciones: {
+          CPU: "12 a 16 núcleos o más",
+          RAM: "64 GB DDR5",
+          GPU: "Gama alta, 16 GB+ VRAM",
+          Almacenamiento: "2 TB NVMe (trabajo) + 4 TB (archivo) + respaldo",
+          Pantalla: '27" 4K IPS o OLED con calibración, 99% DCI-P3',
+        },
+      },
+    ],
+  },
 ];
 
 function crearGuiaCompras() {
