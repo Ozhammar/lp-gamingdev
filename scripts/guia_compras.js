@@ -156,6 +156,67 @@ const datosGuias = [
       },
     ],
   },
+    {
+    titulo: "Perfil Estudiante y Programador Móvil (Notebook)",
+    enfoque:
+      "Equilibrio entre portabilidad, autonomía de batería y comodidad de trabajo. Es el equipo que se lleva a clases, a la biblioteca y al transporte, así que pesa tanto el peso como la pantalla y el teclado.",
+    prioridades: [
+      {
+        titulo: "Autonomía y peso",
+        texto:
+          "Se busca una batería de al menos 60 a 75 Wh y un peso de hasta 1,5 a 1,8 kg. Un equipo potente que no se puede cargar todo el día pierde su razón de ser.",
+      },
+      {
+        titulo: "Memoria RAM",
+        texto:
+          "Mínimo 16 GB, ideal 32 GB si usas máquinas virtuales o contenedores. En muchas notebooks la RAM viene soldada y no se puede ampliar, así que hay que comprar la cantidad definitiva desde el inicio.",
+      },
+      {
+        titulo: "Procesador (CPU)",
+        texto:
+          "Se prioriza la eficiencia energética además de los núcleos: un procesador de 8 núcleos modernos rinde bien y calienta menos que uno de alta potencia.",
+      },
+      {
+        titulo: "Pantalla y teclado",
+        texto:
+          'Panel de 14" a 16" en formato 16:10 (más líneas de código visibles), IPS u OLED, con 300 nits o más de brillo. El teclado cómodo y retroiluminado importa tanto como cualquier componente.',
+      },
+      {
+        titulo: "Almacenamiento y conectividad",
+        texto:
+          "SSD NVMe de 512 GB a 1 TB, puertos USB-C con carga rápida (Power Delivery), Wi-Fi 6E o 7 y, si es posible, un puerto HDMI para proyectar.",
+      },
+      {
+        titulo: "Tarjeta gráfica (GPU)",
+        texto:
+          "Los gráficos integrados alcanzan para programar y estudiar. Una dedicada solo se justifica para juegos o diseño 3D, a cambio de más peso y menos batería.",
+      },
+    ],
+    componentes: [
+      {
+        nivel: "Nivel Recomendado (Estudio y desarrollo)",
+        especificaciones: {
+          CPU: "8 núcleos eficientes",
+          RAM: "16 GB (idealmente ampliable)",
+          GPU: "Integrada",
+          Almacenamiento: "512 GB NVMe",
+          Pantalla: '14"–16" IPS 16:10, 300 nits',
+          "Batería / Peso": "60–75 Wh / hasta 1,5 kg",
+        },
+      },
+      {
+        nivel: "Nivel Avanzado (Virtualización / juegos ocasionales)",
+        especificaciones: {
+          CPU: "8 a 12 núcleos de alto rendimiento",
+          RAM: "32 GB",
+          GPU: "Dedicada de gama media",
+          Almacenamiento: "1 TB NVMe",
+          Pantalla: '16" OLED o Mini LED, 120 Hz',
+          "Batería / Peso": "80–99 Wh / 1,8–2,5 kg",
+        },
+      },
+    ],
+  },
 ];
 
 function crearGuiaCompras() {
