@@ -217,6 +217,67 @@ const datosGuias = [
       },
     ],
   },
+    {
+    titulo: "Perfil Presupuesto Ajustado (Primera PC)",
+    enfoque:
+      "Obtener la mejor relación entre costo y rendimiento, y armar una base que se pueda mejorar con el tiempo en lugar de comprar todo de una vez.",
+    prioridades: [
+      {
+        titulo: "Dónde sí gastar",
+        texto:
+          "La fuente de poder certificada (80 Plus Bronze o superior), la memoria RAM en dual channel y un SSD. Recortar aquí puede dañar el equipo o hacerlo lento.",
+      },
+      {
+        titulo: "Procesador (CPU)",
+        texto:
+          "Uno de 6 núcleos modernos alcanza para estudiar, programar y jugar en 1080p. Si el procesador trae gráficos integrados, se puede arrancar sin placa de video y sumarla después.",
+      },
+      {
+        titulo: "Tarjeta gráfica (GPU)",
+        texto:
+          "Es lo que más se nota al jugar. En un presupuesto chico conviene una de gama media-baja con 8 GB de VRAM antes que gastar de más en procesador.",
+      },
+      {
+        titulo: "Plataforma actualizable",
+        texto:
+          "Elegir una placa madre con un socket que todavía tenga procesadores nuevos por venir permite mejorar la PC más adelante sin cambiarla entera.",
+      },
+      {
+        titulo: "Componentes usados o reacondicionados",
+        texto:
+          "Pueden ser una buena opción en placas de video y gabinetes, pero siempre con garantía o posibilidad de devolución, y nunca en la fuente.",
+      },
+      {
+        titulo: "Monitor",
+        texto:
+          "Un panel 1080p IPS de 100 a 144 Hz es el punto dulce. Un monitor de gama alta en una PC básica es dinero mal gastado.",
+      },
+    ],
+    componentes: [
+      {
+        nivel: "Nivel Inicial (Estudio, programación y juegos livianos)",
+        especificaciones: {
+          CPU: "6 núcleos con gráficos integrados",
+          RAM: "16 GB DDR5 (Dual Channel)",
+          GPU: "Integrada (se suma una dedicada después)",
+          Almacenamiento: "500 GB NVMe",
+          Fuente: "500–550 W certificada",
+          Pantalla: '24" IPS 1080p 75 Hz',
+        },
+      },
+      {
+        nivel: "Nivel Gaming 1080p",
+        especificaciones: {
+          CPU: "6 núcleos, buen rendimiento por núcleo",
+          RAM: "16 a 32 GB DDR5",
+          GPU: "Gama media-baja, 8 GB VRAM",
+          Almacenamiento: "1 TB NVMe",
+          Fuente: "600–650 W certificada",
+          Pantalla: '24" IPS 1080p 144 Hz',
+        },
+      },
+    ],
+  },
 ];
 
 function crearGuiaCompras() {
