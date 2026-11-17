@@ -15,17 +15,17 @@ const datosGuias = [
           "Se prioriza cantidad de núcleos e hilos para compilación rápida y virtualización (ej. Ryzen 7 / Core Ultra 7 o superior).",
       },
       {
-        titulo: "Almacenamiento:",
+        titulo: "Almacenamiento",
         texto:
           "SSD NVMe Gen4 de al menos 1 TB con buena resistencia (TBW), ya que compilar código y mover imágenes de contenedores desgasta el disco.",
       },
       {
-        titulo: "Gráficos",
+        titulo: "Tarjeta gráfica (GPU)",
         texto:
-          "integrados alcanzan para desarrollo web, mobile y backend. Solo se justifica una dedicada (con buena VRAM, ej. 12 GB+) si haces Machine Learning local o desarrollo de videojuegos.",
+          "Los gráficos integrados alcanzan para desarrollo web, mobile y backend. Solo se justifica una dedicada (con buena VRAM, ej. 12 GB+) si haces Machine Learning local o desarrollo de videojuegos.",
       },
       {
-        titulo: "Perisfericos",
+        titulo: "Periféricos",
         texto:
           'Teclado mecánico cómodo (switches táctiles o lineales silenciosos) y monitor IPS de 27" QHD (1440p) o configuración doble monitor para leer código sin fatiga visual.',
       },
@@ -37,8 +37,8 @@ const datosGuias = [
           CPU: "8 núcleos / 16 hilos",
           RAM: "32 GB DDR5",
           GPU: "Integrada en CPU",
-          ALMACENAMIENTO: "1 TB NVMe PCIe 4.0",
-          PANTALLA: '27" IPS 1440p (60-75 Hz)',
+          Almacenamiento: "1 TB NVMe PCIe 4.0",
+          Pantalla: '27" IPS 1440p (60-75 Hz)',
         },
       },
       {
@@ -47,13 +47,13 @@ const datosGuias = [
           CPU: "12 a 16 núcleos",
           RAM: "64 GB DDR5",
           GPU: "Dedicada con 12 GB - 16 GB VRAM",
-          ALMACENAMIENTO: "    2 TB NVMe PCIe 4.0",
-          PANTALLA: 'Doble 27" 1440p o 32" 4K',
+          Almacenamiento: "2 TB NVMe PCIe 4.0",
+          Pantalla: 'Doble 27" 1440p o 32" 4K',
         },
       },
     ],
   },
-    {
+  {
     titulo: "Perfil Gamer",
     enfoque:
       "Maximizar fotogramas por segundo (FPS), baja latencia de respuesta y calidad visual en resoluciones 1080p, 1440p o 4K.",
@@ -107,7 +107,7 @@ const datosGuias = [
       },
     ],
   },
-    {
+  {
     titulo: "Perfil Híbrido: Gamer + Desarrollador",
     enfoque:
       "Equilibrar la capacidad de cómputo y memoria del desarrollador con la potencia gráfica y fluidez visual del gamer, cuidando el ruido y el consumo cuando se trabaja.",
@@ -140,7 +140,7 @@ const datosGuias = [
       {
         titulo: "Monitor versátil",
         texto:
-          "Un panel 27\" IPS QHD (2560x1440) de 165 Hz con buena fidelidad de color (99% sRGB) ofrece nitidez de texto para programar y fluidez total para jugar.",
+          'Un panel 27" IPS QHD (2560x1440) de 165 Hz con buena fidelidad de color (99% sRGB) ofrece nitidez de texto para programar y fluidez total para jugar.',
       },
     ],
     componentes: [
@@ -156,7 +156,7 @@ const datosGuias = [
       },
     ],
   },
-    {
+  {
     titulo: "Perfil Estudiante y Programador Móvil (Notebook)",
     enfoque:
       "Equilibrio entre portabilidad, autonomía de batería y comodidad de trabajo. Es el equipo que se lleva a clases, a la biblioteca y al transporte, así que pesa tanto el peso como la pantalla y el teclado.",
@@ -217,7 +217,7 @@ const datosGuias = [
       },
     ],
   },
-    {
+  {
     titulo: "Perfil Presupuesto Ajustado (Primera PC)",
     enfoque:
       "Obtener la mejor relación entre costo y rendimiento, y armar una base que se pueda mejorar con el tiempo en lugar de comprar todo de una vez.",
@@ -278,7 +278,7 @@ const datosGuias = [
       },
     ],
   },
-    {
+  {
     titulo: "Perfil Creador de Contenido (Edición, Streaming y Diseño 3D)",
     enfoque:
       "Mantener fluidez al editar video, renderizar y transmitir en vivo, con color confiable y poco ruido durante sesiones largas.",
@@ -339,6 +339,119 @@ const datosGuias = [
   },
 ];
 
+const class_GuiaPrioridades = "guia-prioridades";
+const class_GuiaTablaContenedor = "guia-tabla-contenedor";
+
+let botonesGuias = [];
+
+function crearElementoGuia(etiqueta, texto = "", clase = "") {
+  const elemento = document.createElement(etiqueta);
+  if (texto) elemento.textContent = texto;
+  if (clase) elemento.classList.add(clase);
+  return elemento;
+}
+
+function crearMenuGuias() {
+  const nav = document.getElementById("nav_guias");
+  const lista = document.createElement("ul");
+  botonesGuias = [];
+
+  datosGuias.forEach((guia, indice) => {
+    const item = document.createElement("li");
+    const boton = crearElementoGuia("button", guia.titulo);
+    boton.type = "button";
+    boton.addEventListener("click", () => mostrarGuia(indice, true));
+    item.appendChild(boton);
+    lista.appendChild(item);
+    botonesGuias.push(boton);
+  });
+
+  nav.appendChild(lista);
+}
+
+function marcarGuiaActiva(indice) {
+  botonesGuias.forEach((boton, i) => {
+    if (i === indice) {
+      boton.setAttribute("aria-current", "true");
+    } else {
+      boton.removeAttribute("aria-current");
+    }
+  });
+}
+
+function crearTablaComponentes(componentes) {
+  const filas = [];
+  componentes.forEach((nivel) => {
+    Object.keys(nivel.especificaciones).forEach((clave) => {
+      if (!filas.includes(clave)) filas.push(clave);
+    });
+  });
+
+  const tabla = document.createElement("table");
+  tabla.appendChild(crearElementoGuia("caption", "Componentes recomendados"));
+
+  const cabecera = document.createElement("tr");
+  const celdaVacia = crearElementoGuia("th", "Componente");
+  celdaVacia.scope = "col";
+  cabecera.appendChild(celdaVacia);
+  componentes.forEach((nivel) => {
+    const encabezado = crearElementoGuia("th", nivel.nivel);
+    encabezado.scope = "col";
+    cabecera.appendChild(encabezado);
+  });
+  const thead = document.createElement("thead");
+  thead.appendChild(cabecera);
+  tabla.appendChild(thead);
+
+  const cuerpo = document.createElement("tbody");
+  filas.forEach((clave) => {
+    const fila = document.createElement("tr");
+    const etiqueta = crearElementoGuia("th", clave);
+    etiqueta.scope = "row";
+    fila.appendChild(etiqueta);
+    componentes.forEach((nivel) => {
+      fila.appendChild(crearElementoGuia("td", nivel.especificaciones[clave] ?? "—"));
+    });
+    cuerpo.appendChild(fila);
+  });
+  tabla.appendChild(cuerpo);
+
+  const contenedor = crearElementoGuia("div", "", class_GuiaTablaContenedor);
+  contenedor.tabIndex = 0;
+  contenedor.appendChild(tabla);
+  return contenedor;
+}
+
+function mostrarGuia(indice, enfocar = false) {
+  const guia = datosGuias[indice];
+  const panel = document.getElementById("contenido_guia");
+  panel.replaceChildren();
+
+  const articulo = document.createElement("article");
+  const titulo = crearElementoGuia("h3", guia.titulo);
+  titulo.tabIndex = -1;
+  articulo.appendChild(titulo);
+
+  articulo.appendChild(crearElementoGuia("h4", "Enfoque principal"));
+  articulo.appendChild(crearElementoGuia("p", guia.enfoque));
+
+  articulo.appendChild(crearElementoGuia("h4", "Prioridades"));
+  const lista = crearElementoGuia("ol", "", class_GuiaPrioridades);
+  guia.prioridades.forEach((prioridad) => {
+    const item = document.createElement("li");
+    item.appendChild(crearElementoGuia("strong", prioridad.titulo + ": "));
+    item.append(prioridad.texto);
+    lista.appendChild(item);
+  });
+  articulo.appendChild(lista);
+
+  articulo.appendChild(crearTablaComponentes(guia.componentes));
+  panel.appendChild(articulo);
+
+  marcarGuiaActiva(indice);
+}
+
 function crearGuiaCompras() {
-  console.log(datosGuias);
+  crearMenuGuias();
+  mostrarGuia(0);
 }
