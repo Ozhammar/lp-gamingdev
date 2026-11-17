@@ -107,6 +107,55 @@ const datosGuias = [
       },
     ],
   },
+    {
+    titulo: "Perfil Híbrido: Gamer + Desarrollador",
+    enfoque:
+      "Equilibrar la capacidad de cómputo y memoria del desarrollador con la potencia gráfica y fluidez visual del gamer, cuidando el ruido y el consumo cuando se trabaja.",
+    prioridades: [
+      {
+        titulo: "El punto de equilibrio",
+        texto:
+          "No se recorta ni en GPU ni en RAM. Se busca una máquina silenciosa en tareas de escritorio que despliegue toda su potencia al compilar o abrir un juego.",
+      },
+      {
+        titulo: "Procesador (CPU)",
+        texto:
+          "Necesita tanto buen rendimiento por núcleo (para juegos) como suficientes núcleos totales (para compilar y correr servidores locales). Un procesador de 8 a 12 núcleos modernos es el punto ideal.",
+      },
+      {
+        titulo: "Memoria RAM",
+        texto:
+          "32 GB DDR5 como estándar obligatorio (cubre cualquier juego actual y permite tener el IDE, navegador y contenedores abiertos sin cerrar todo antes de jugar).",
+      },
+      {
+        titulo: "Tarjeta gráfica (GPU)",
+        texto:
+          "Se recomiendan modelos con 12 GB o 16 GB de VRAM (especialmente NVIDIA por compatibilidad con CUDA si el desarrollador explora IA, además de DLSS para gaming).",
+      },
+      {
+        titulo: "Almacenamiento separado",
+        texto:
+          "Idealmente dos discos NVMe (o uno de 2 TB particionado): uno destinado al sistema, proyectos y entornos de trabajo, y otro exclusivo para la biblioteca de juegos pesados.",
+      },
+      {
+        titulo: "Monitor versátil",
+        texto:
+          "Un panel 27\" IPS QHD (2560x1440) de 165 Hz con buena fidelidad de color (99% sRGB) ofrece nitidez de texto para programar y fluidez total para jugar.",
+      },
+    ],
+    componentes: [
+      {
+        nivel: "Configuración Equilibrada (Recomendada)",
+        especificaciones: {
+          CPU: "8 a 12 núcleos híbridos de última generación",
+          RAM: "32 GB DDR5 (ampliable a 64 GB)",
+          GPU: "Gama media-alta / alta con 12 GB - 16 GB VRAM",
+          Almacenamiento: "1 TB NVMe (Trabajo/SO) + 1 TB NVMe (Juegos)",
+          Pantalla: '27" QHD (1440p) IPS, 165 Hz, 99% sRGB',
+        },
+      },
+    ],
+  },
 ];
 
 function crearGuiaCompras() {
