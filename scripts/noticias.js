@@ -186,7 +186,7 @@ function abrirModalNoticia(noticia) {
   );
   modal.appendChild(crearElementoNoticias("p", noticia.description));
 
-  const enlace = crearElementoNoticias("a");
+  const enlace = crearElementoNoticias("a", "Leer el artículo completo...");
   enlace.href = noticia.url;
   enlace.target = "_blank";
   enlace.rel = "noopener noreferrer";
