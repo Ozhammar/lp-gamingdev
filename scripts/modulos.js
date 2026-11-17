@@ -22,7 +22,7 @@ async function cargaLayout() {
 
 /*El parametro default, se modifica durante el desarrollo para el reload automatico del liveserver se logre dar, a la pestaña que se este desarrollando
  */
-async function cargaModular(elemento = "guia_compras.html") {
+async function cargaModular(elemento = "home.html") {
   const main = document.getElementById("main");
 
   try {
@@ -54,6 +54,7 @@ async function cargaModular(elemento = "guia_compras.html") {
         crearGuiaCompras();
         break;
       case "home.html":
+        crearHome();
         break;
     }
   } catch (error) {
