@@ -1,57 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Lucas Povolo">
-        <link rel ="author" href="https://github.com/Ozhammar">
-        <title>LP-GamingDev</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Povolo">
+    <link rel="author" href="https://github.com/Ozhammar">
 
-        <!--- FONTS Y HOJAS DE ESTILO--->
-        <link rel="stylesheet" href="styles/styles.css">
-        <link rel="stylesheet" href="styles/styles_header.css">
-        <link rel="stylesheet" href="styles/styles_footer.css">
-        <link rel="stylesheet" href="styles/styles_main.css">
-        <link rel="stylesheet" href="styles/styles_contacto.css">
-        <link rel="stylesheet" href="styles/styles_about.css">
-        <link rel="stylesheet" href="styles/styles_recursos.css">
-        <link rel="stylesheet" href="styles/styles_faqs.css">
-        <link rel="stylesheet" href="styles/styles_galeria.css">
-        <link rel="stylesheet" href="styles/styles_reviews.css">
-        <link rel="stylesheet" href="styles/styles_noticias.css">
-        <link rel="stylesheet" href="styles/styles_testimonios.css">
-        <link rel="stylesheet" href="styles/styles_guiacompras.css">
-        <link rel="stylesheet" href="styles/styles_home.css">
+    <!-- SEO e Indexación -->
+    <meta name="description"
+        content="LP-GamingDev: portal de desarrollo de software, hardware, guías de compra, reseñas y recursos para gamers y desarrolladores.">
+    <meta name="keywords"
+        content="LP-GamingDev, gaming, desarrollo web, hardware, guías de compra, PC gamer, programación, reviews">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
 
-         <!-------------------FONTS------------------------->
-        <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Share+Tech' rel='stylesheet'>
+    <!-- Identidad y Clasificación -->
+    <meta name="application-name" content="LP-GamingDev">
+    <meta name="rating" content="general">
+    <meta name="notranslate" content="notranslate">
+    <meta name="theme-color" content="#1a1a2e">
 
-        <!--- SCRIPTS -->
-        <!-- <script src="https://kit.fontawesome.com/5b820f5134.js" crossorigin="anonymous"></script> -->
-        <!-- Base requerida -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" />
-        <!-- Solo marcas -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/regular.min.css" />
-        <script src="scripts/modulos.js" defer></script>
-        <script src="scripts/navbar_recursos.js" defer></script>
-        <script src="scripts/form_contacto.js" defer></script>
-        <script src="scripts/faqs.js" defer></script>
-        <script src="scripts/galeria.js" defer></script>
-        <script src="scripts/reviews.js" defer></script>
-        <script src="scripts/noticias.js" defer></script>
-        <script src="scripts/testimonios.js" defer></script>
-        <script src="scripts/guia_compras.js" defer></script>
-        <script src="scripts/home.js" defer></script>
-        <script src="scripts/firebase.js" defer></script>
-    </head>
+    <!-- Open Graph (Redes Sociales) -->
+    <meta property="og:title" content="LP-GamingDev | Gaming & Desarrollo">
+    <meta property="og:description" content="Guías de hardware, reseñas, recursos y desarrollo web en un solo lugar.">
+    <meta property="og:url" content="https://ozhammar.github.io/lp-gamingdev/">
+    <meta property="og:type" content="website">
+
+    <title>LP-GamingDev</title>
+
+    <link rel="shortcut icon" sizes="32x32" href="/assets/imagenes/favicon.ico" type="image/x-icon">
+
+    <!--- FONTS Y HOJAS DE ESTILO--->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles_header.css">
+    <link rel="stylesheet" href="styles/styles_footer.css">
+    <link rel="stylesheet" href="styles/styles_main.css">
+    <link rel="stylesheet" href="styles/styles_contacto.css">
+    <link rel="stylesheet" href="styles/styles_about.css">
+    <link rel="stylesheet" href="styles/styles_recursos.css">
+    <link rel="stylesheet" href="styles/styles_faqs.css">
+    <link rel="stylesheet" href="styles/styles_galeria.css">
+    <link rel="stylesheet" href="styles/styles_reviews.css">
+    <link rel="stylesheet" href="styles/styles_noticias.css">
+    <link rel="stylesheet" href="styles/styles_testimonios.css">
+    <link rel="stylesheet" href="styles/styles_guiacompras.css">
+    <link rel="stylesheet" href="styles/styles_home.css">
+
+    <!-------------------FONTS------------------------->
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Share+Tech' rel='stylesheet'>
+
+    <!--- SCRIPTS -->
+    <!-- <script src="https://kit.fontawesome.com/5b820f5134.js" crossorigin="anonymous"></script> -->
+    <!-- Base requerida -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" />
+    <!-- Solo marcas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/regular.min.css" />
+    <script src="scripts/modulos.js" defer></script>
+    <script src="scripts/navbar_recursos.js" defer></script>
+    <script src="scripts/form_contacto.js" defer></script>
+    <script src="scripts/faqs.js" defer></script>
+    <script src="scripts/galeria.js" defer></script>
+    <script src="scripts/reviews.js" defer></script>
+    <script src="scripts/noticias.js" defer></script>
+    <script src="scripts/testimonios.js" defer></script>
+    <script src="scripts/guia_compras.js" defer></script>
+    <script src="scripts/home.js" defer></script>
+    <script src="scripts/firebase.js" defer></script>
+</head>
+
 <body>
-   <div id="header"></div>
-   <div id="main"></div>
-   <div id="footer"></div>
+    <div id="header"></div>
+    <div id="main"></div>
+    <div id="footer"></div>
 </body>
 
 </html>
