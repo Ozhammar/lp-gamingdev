@@ -63,6 +63,7 @@ function formTestimonio() {
       case "Calificación":
         inputField.setAttribute("type", "number");
         inputField.setAttribute("required", true);
+        inputField.setAttribute("value", 4);
         inputField.setAttribute("min", 0);
         inputField.setAttribute("max", 5);
         inputField.setAttribute("step", 1);
